@@ -27,7 +27,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $vote_kan_station->id }}</td>
                                     </tr>
-                                    <tr><th> Name </th><td> {{ $vote_kan_station->name }} </td></tr><tr><th> Phone </th><td> {{ $vote_kan_station->phone }} </td></tr><tr><th> Phone 2 </th><td> {{ $vote_kan_station->phone_2 }} </td></tr><tr><th> Province </th><td> {{ $vote_kan_station->province }} </td></tr><tr><th> Amphoe </th><td> {{ $vote_kan_station->amphoe }} </td></tr><tr><th> Area </th><td> {{ $vote_kan_station->area }} </td></tr><tr><th> Tambon </th><td> {{ $vote_kan_station->tambon }} </td></tr><tr><th> Polling Station At </th><td> {{ $vote_kan_station->polling_station_at }} </td></tr><tr><th> User Id </th><td> {{ $vote_kan_station->user_id }} </td></tr><tr><th> Name User </th><td> {{ $vote_kan_station->name_user }} </td></tr><tr><th> Amount Add Score </th><td> {{ $vote_kan_station->amount_add_score }} </td></tr><tr><th> Quantity Person </th><td> {{ $vote_kan_station->quantity_person }} </td></tr>
+                                    <tr><th> Name </th><td> {{ $vote_kan_station->name }} </td></tr><tr><th> Province </th><td> {{ $vote_kan_station->province }} </td></tr><tr><th> Amphoe </th><td> {{ $vote_kan_station->amphoe }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

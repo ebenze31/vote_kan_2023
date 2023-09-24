@@ -27,5 +27,8 @@ class Vote_kan_score extends Model
      */
     protected $fillable = ['vote_kan_stations_id', 'user_id', 'number_1', 'number_2', 'amphoe', 'last'];
 
+    public function vote_kan_station(){
+        return $this->belongsTo('App\Models\Vote_kan_station', 'vote_kan_stations_id' , 'id'); 
+    }
     
 }

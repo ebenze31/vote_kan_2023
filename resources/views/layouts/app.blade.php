@@ -1,72 +1,76 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<!doctype html>
+<html lang="en">
+
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--favicon-->
+    <link rel="icon" href="{{asset('img/logo/tcra.png')}}" type="image/png" />
+    <!--plugins-->
+    <link href="{{asset('theme/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
+    <link href="{{asset('theme/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
+    <link href="{{asset('theme/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
+    <!-- loader-->
+    <link href="{{asset('theme/css/pace.min.css')}}" rel="stylesheet" />
+    <script src="{{asset('theme/js/pace.min.js')}}"></script>
+    <!-- Bootstrap CSS -->
+    <link href="{{asset('theme/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="{{asset('theme/css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('theme/css/icons.css')}}" rel="stylesheet">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap" rel="stylesheet">
+    <title>TCRA - สมาคมรถเช่าไทย</title>
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @if(!Auth::check())
-                            <li><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
-                            <li><a class="nav-link" href="{{ url('/register') }}">Register</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('/logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+    <!--wrapper-->
+    <div class="wrapper">
+        <div class="authentication-header"></div>
+        <header class="login-header shadow">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white rounded fixed-top rounded-0 shadow-sm">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{{asset('')}}">
+                        <img src="{{asset('img/logo/tcra.png')}}" width="50" alt="" />
+                        สมาคมรถเช่าไทย
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"> <a class="nav-link active" aria-current="page" href="https://www.tcra.or.th/"><i class='bx bx-home-alt me-1'></i>Home</a>
                             </li>
-                        @endif
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        @yield('content')
+
+        <footer class="bg-white shadow-sm border-top p-2 text-center fixed-bottom">
+            <p class="mb-0">
+                <img src="{{asset('img/logo/tcra.png')}}" width="20" alt="" />
+                TCRA © Power by <a href="mailto:contact.viicheck.com" class="link text-secondary">2B-Green</a>
+            </p>
+        </footer>
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <!--end wrapper-->
+    <!-- Bootstrap JS -->
+    <script src="{{asset('theme/js/bootstrap.bundle.min.js')}}"></script>
+    <!--plugins-->
+    <script src="{{asset('theme/js/jquery.min.js')}}"></script>
+    <script src="{{asset('theme/plugins/simplebar/js/simplebar.min.js')}}"></script>
+    <script src="{{asset('theme/plugins/metismenu/js/metisMenu.min.js')}}"></script>
+    <script src="{{asset('theme/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
+    <!--Password show & hide js -->
+    <!--app JS-->
+    <script src="{{asset('theme/js/app.js')}}"></script>
 </body>
+
 </html>

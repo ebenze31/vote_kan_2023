@@ -27,7 +27,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $vote_kan_score->id }}</td>
                                     </tr>
-                                    <tr><th> Vote Kan Stations Id </th><td> {{ $vote_kan_score->vote_kan_stations_id }} </td></tr><tr><th> User Id </th><td> {{ $vote_kan_score->user_id }} </td></tr><tr><th> Number 1 </th><td> {{ $vote_kan_score->number_1 }} </td></tr><tr><th> Number 2 </th><td> {{ $vote_kan_score->number_2 }} </td></tr><tr><th> Amphoe </th><td> {{ $vote_kan_score->amphoe }} </td></tr><tr><th> Last </th><td> {{ $vote_kan_score->last }} </td></tr>
+                                    <tr><th> Vote Kan Stations Id </th><td> {{ $vote_kan_score->vote_kan_stations_id }} </td></tr><tr><th> User Id </th><td> {{ $vote_kan_score->user_id }} </td></tr><tr><th> Last </th><td> {{ $vote_kan_score->last }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

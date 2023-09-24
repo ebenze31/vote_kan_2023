@@ -27,7 +27,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $vote_kan_data_station->id }}</td>
                                     </tr>
-                                    <tr><th> Amphoe </th><td> {{ $vote_kan_data_station->amphoe }} </td></tr><tr><th> Area </th><td> {{ $vote_kan_data_station->area }} </td></tr><tr><th> Tambon </th><td> {{ $vote_kan_data_station->tambon }} </td></tr><tr><th> Polling Station At </th><td> {{ $vote_kan_data_station->polling_station_at }} </td></tr><tr><th> Not Registered </th><td> {{ $vote_kan_data_station->not_registered }} </td></tr><tr><th> Registered </th><td> {{ $vote_kan_data_station->registered }} </td></tr>
+                                    <tr><th> Amphoe </th><td> {{ $vote_kan_data_station->amphoe }} </td></tr><tr><th> Area </th><td> {{ $vote_kan_data_station->area }} </td></tr><tr><th> Tambon </th><td> {{ $vote_kan_data_station->tambon }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

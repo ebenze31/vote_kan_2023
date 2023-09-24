@@ -17,12 +17,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+// show_score_public
+Route::get('/', 'Vote_kan_scoresController@show_score_public');
+Route::get('/show_score_public', 'Vote_kan_scoresController@show_score_public');
+
+
 Route::get('/vote_kan_login/{user_from}', 'Vote_kan_data_stationsController@vote_kan_login');
 // Route::get('/vote_kan_login/login/line/{user_from}', 'Auth\LoginController@redirectToLine_vote_kan_login');
 
-Route::resource('vote_kan_all_scores', 'Vote_kan_all_scoresController');
-Route::resource('vote_kan_stations', 'Vote_kan_stationsController');
-Route::resource('vote_kan_scores', 'Vote_kan_scoresController');
-Route::get('vote_kan_admin/show_score', 'Vote_kan_scoresController@show_score');
-Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
-Route::get('vote_kan_stations_not_registered', 'Vote_kan_data_stationsController@not_registered'); // index
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/vote_kan_index', 'HomeController@vote_kan_index');
+    Route::resource('vote_kan_all_scores', 'Vote_kan_all_scoresController');
+    Route::resource('vote_kan_stations', 'Vote_kan_stationsController');
+    Route::resource('vote_kan_scores', 'Vote_kan_scoresController');
+    Route::get('vote_kan_admin/show_score', 'Vote_kan_scoresController@show_score');
+    Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
+    Route::get('vote_kan_stations_not_registered', 'Vote_kan_data_stationsController@not_registered'); // index
+
+});

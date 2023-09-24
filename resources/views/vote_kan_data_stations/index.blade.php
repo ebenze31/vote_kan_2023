@@ -30,14 +30,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Amphoe</th><th>Area</th><th>Tambon</th><th>Polling Station At</th><th>Not Registered</th><th>Registered</th><th>Actions</th>
+                                        <th>#</th><th>Amphoe</th><th>Area</th><th>Tambon</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($vote_kan_data_stations as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->amphoe }}</td><td>{{ $item->area }}</td><td>{{ $item->tambon }}</td><td>{{ $item->polling_station_at }}</td><td>{{ $item->not_registered }}</td><td>{{ $item->registered }}</td>
+                                        <td>{{ $item->amphoe }}</td><td>{{ $item->area }}</td><td>{{ $item->tambon }}</td>
                                         <td>
                                             <a href="{{ url('/vote_kan_data_stations/' . $item->id) }}" title="View Vote_kan_data_station"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/vote_kan_data_stations/' . $item->id . '/edit') }}" title="Edit Vote_kan_data_station"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

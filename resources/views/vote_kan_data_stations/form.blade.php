@@ -18,16 +18,6 @@
     <input class="form-control" name="polling_station_at" type="text" id="polling_station_at" value="{{ isset($vote_kan_data_station->polling_station_at) ? $vote_kan_data_station->polling_station_at : ''}}" >
     {!! $errors->first('polling_station_at', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('not_registered') ? 'has-error' : ''}}">
-    <label for="not_registered" class="control-label">{{ 'Not Registered' }}</label>
-    <input class="form-control" name="not_registered" type="text" id="not_registered" value="{{ isset($vote_kan_data_station->not_registered) ? $vote_kan_data_station->not_registered : ''}}" >
-    {!! $errors->first('not_registered', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('registered') ? 'has-error' : ''}}">
-    <label for="registered" class="control-label">{{ 'Registered' }}</label>
-    <input class="form-control" name="registered" type="text" id="registered" value="{{ isset($vote_kan_data_station->registered) ? $vote_kan_data_station->registered : ''}}" >
-    {!! $errors->first('registered', '<p class="help-block">:message</p>') !!}
-</div>
 
 
 <div class="form-group">
