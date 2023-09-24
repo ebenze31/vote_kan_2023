@@ -1,0 +1,52 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "phone_2",
+            "type": "string"
+        },
+        {
+            "name": "province",
+            "type": "string"
+        },
+        {
+            "name": "amphoe",
+            "type": "string"
+        },
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "tambon",
+            "type": "string"
+        },
+        {
+            "name": "polling_station_at",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "name_user",
+            "type": "string"
+        },
+        {
+            "name": "amount_add_score",
+            "type": "string"
+        },
+        {
+            "name": "quantity_person",
+            "type": "string"
+        }
+    ]
+}

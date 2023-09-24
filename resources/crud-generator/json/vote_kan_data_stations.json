@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "amphoe",
+            "type": "string"
+        },
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "tambon",
+            "type": "string"
+        },
+        {
+            "name": "polling_station_at",
+            "type": "string"
+        },
+        {
+            "name": "not_registered",
+            "type": "string"
+        },
+        {
+            "name": "registered",
+            "type": "string"
+        }
+    ]
+}
