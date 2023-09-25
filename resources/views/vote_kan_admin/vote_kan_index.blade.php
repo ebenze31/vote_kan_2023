@@ -55,7 +55,7 @@ url('data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICR
                             <img src="img/STK/1.png" width="100%" alt="viicheck">
                         </div>
                         <div class="card-body col-md-6 d-flex align-items-center ">
-                            <div class="col-md-12">
+                            <div class="col-md-12 w-100">
                                 <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>ยินดีต้อนรับ </b> </h1>
                                 <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>เข้าสู่</b> </h1>
                                 <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>ระบบรายงานผลคะแนน</b></h1>
