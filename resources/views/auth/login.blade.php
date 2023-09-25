@@ -63,11 +63,6 @@
             display: inline-block;
         }
 
-        .radio-input-mobile-login label.customer-login:has(input:checked)~.selection-type-login {
-            background-color: #e62e2e !important;
-            display: inline-block;
-        }
-
         .radio-input-mobile-login label:nth-child(1):has(input:checked)~.selection-type-login {
             transform: translateX(calc(0%));
         }
@@ -143,18 +138,6 @@
         .btnSwip.ghost {
             background-color: transparent;
             border-color: #FFFFFF;
-        }
-        .btnSwipDanger {
-            border-radius: 20px;
-            border: 1px solid #e62e2e;
-            background-color: #e62e2e;
-            color: #FFFFFF;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 12px 45px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: transform 80ms ease-in;
         }
 
         .btnSwipDanger:active {
@@ -283,14 +266,6 @@
             transition: transform 0.6s ease-in-out;
         }
 
-        .containerLogin.right-panel-active .overlay {
-            transform: translateX(50%);
-            background: #e62e2e !important;
-            background: -webkit-linear-gradient(to right, #e62e2e, #e62e2e) !important;
-            background: linear-gradient(to right, #e62e2e, #e62e2e) !important;
-
-        }
-
         .overlay-panel {
             position: absolute;
             display: flex;
@@ -338,7 +313,7 @@
             width: 40px;
         }
 
-        .text-tcra {
+        .text-vote-kan {
             color: #0f72ac !important;
         }
 
@@ -368,39 +343,24 @@
     100% {
         transform: scale(1);
     }
-}.authentication-header-danger {
-    background: #A11D1D !important;
-}.password-input{
+}
+.password-input{
     border-radius: 3px !important;
 }
 </style>
 <div class="wrapper loginPC">
     <div class="section-authentication-signin d-flex align-items-center justify-content-center">
         <div class="">
-            @php
-                $full_url = url()->full();
-                $full_url_ex = explode("error=",$full_url);
-                if(!empty($full_url_ex[1])){
-                    $error_login = "YES" ;
-                }else{
-                    $error_login = "NO" ;
-                }
-            @endphp
-            
-                <!-- ////////////////////////////////////////////////////////// -->
-                <!-- ////////////////////////CUSTOMER LOGIN//////////////////// -->
-                <!-- ////////////////////////////////////////////////////////// -->
+
             <div class="containerLogin" id="containerLogin">
                 <div class="form-container sign-in-container">
                     <form class="formLogin row g-3" action="#" method="POST" action="{{ route('login') }}">
                         @csrf
-                        <h1 class="headerLogin text-tcra">เข้าสู่ระบบ</h1>
-                        <!-- <input class="inputLogin" type="text" placeholder="Name" />
-                            <input class="inputLogin" type="email" placeholder="Email" />
-                            <input class="inputLogin" type="password" placeholder="Password" /> -->
+                        <h1 class="headerLogin text-vote-kan mb-4">เข้าสู่ระบบ</h1>
 
-                        <input type="text" class="form-control inputLogin  @error('username') is-invalid @enderror" id="username" placeholder="Username" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-                        @error('username')
+                        <input type="email" class="form-control inputLogin @error('username') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
+
+                        @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -408,7 +368,6 @@
 
                         <div class="input-group p-0" id="show_hide_password">
                             <input type="password" class="form-control border-end-0 inputLogin @error('password') is-invalid @enderror password-input" id="password" name="password" value="" placeholder="Password" required autocomplete="current-password">
-                            <a href="javascript:;" class="input-group-text bg-transparent border-end-0 iconShowPassword toggle-password"><i class='bx bx-hide'></i></a>
                         </div>
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -417,37 +376,49 @@
                         @enderror
 
                         @if (Route::has('password.request'))
-                        <div class="d-flex justify-content-end w-100">
+                        <div class="d-flex justify-content-end w-100 d-none">
                             <a class="btn btn-link text-muted float-right p-0 mt-1" href="{{ route('password.request') }}?back={{ url()->full() }}">
                                 {{ __('ลืมรหัสผ่าน ?') }}
                             </a>
                         </div>
                         @endif
                         <button class="btnSwip" type="submit">Login</button>
-                    
-                    </form> 
-                    @if($error_login == "YES")
+
+                        <span style="text-transform: uppercase;text-align: center;" class="col-md-2 mt-3 d-none d-lg-block"> หรือ </span>
+
+                        <div class="col-12 main-shadow main-radius" style="background-color: #28A745;">
+                            <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}">
+                                <button style="padding-top: 5px; padding-bottom: 5px;color: #ffff;" type="button" class="btn">
+                                    <img width="10%" class="main-shadow" style="border-radius: 20px;background-color: #ffff;" src="{{ asset('/img/icon_login/icon-line.png') }}">&nbsp;&nbsp; Login with LINE
+                                </button>
+                            </a>
+                        </div>
+                        <br><br>
+                            
+                    </form>
+
+                    @if (count($errors) > 0)
                         <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show py-1" style="left:5%;width:90%;position: absolute; top:82%;">
                             <div class="d-flex align-items-center">
                                 <div class="font-35 text-white me-2"><i class="bx bxs-message-square-x"></i>
                                 </div>
                                 <div class="w-100 float-left float-end">
-                                    <h6 class="mb-0 text-white float-left float-end">Username หรือ Password ไม่ถูกต้อง</h6>
+                                    <h6 class="mb-0 text-white float-left float-end">Email หรือ Password ไม่ถูกต้อง</h6>
                                     <div class="text-white float-left float-end">กรุณาตรวจสอบและลองใหม่อีกครั้ง</div>
                                 </div>
                             </div>
                             <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
                         </div>
                     @endif
+
                 </div>
 
                 <div class="overlay-container">
                     <div class="overlay">
                         <div class="overlay-panel overlay-right">
-                            <img src="{{asset('img/icon/iconDriversSlash.png')}}" class="mb-2" width="90" alt="">
-
-                            <h1 class="headerLogin">BlackList <br> พนักงานขับรถ</h1>
-                            <p class="detailLogin">(เฉพาะสมาชิกสามัญ)</p>
+                            <img src="{{ asset('/img/vote_kan/อบจ_กาญxวีเช็ค.png') }}" class="mb-2" width="250" alt="">
+                            <h1 class="headerLogin">ระบบรายงาน<br>ผลคะแนน</h1>
+                            <p class="detailLogin">(อย่างไม่เป็นทางกการ)</p>
                         </div>
                     </div>
                 </div>

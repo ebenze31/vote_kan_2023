@@ -6,8 +6,6 @@
 	<link href="{{ asset('partner_new/css/pace.min.css') }}" rel="stylesheet" />
 	<script src="{{ asset('partner_new/js/pace.min.js') }}"></script>
 
-
-
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,7 +52,7 @@
     <!-- datatables -->
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" /> --}}
 
-	<title id="title_theme">Partner Viicheck</title>
+	<title id="title_theme">ระบบรายงานผลคะแนน</title>
 </head>
 <style>
     *:not(i) {
@@ -538,7 +536,12 @@
         <!--End Back To Top Button-->
         <footer class="page-footer" style="z-index: 999999999;">
             <p class="m-0">รายงานผลการนับคะแนน (อย่างไม่เป็นทางการ)</p>
-            <p class="mb-0">Powered by <a href="mailto:contact.viicheck.com" class="link text-secondary">ViiCHECK</a></p>
+            <p class="mb-0">
+                Powered by 
+                <a href="mailto:contact.viicheck.com" class="link text-secondary">
+                    <img src="{{ asset('/img/logo-partner/command-center/logo-viicheck-outline.png') }}" width="50" alt="" />
+                </a>
+            </p>
         </footer>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>

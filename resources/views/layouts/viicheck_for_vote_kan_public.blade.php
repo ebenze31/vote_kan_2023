@@ -54,7 +54,7 @@
     <!-- datatables -->
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" /> --}}
 
-	<title id="title_theme">Partner Viicheck</title>
+	<title id="title_theme">ระบบรายงานผลคะแนน</title>
 </head>
 <style>
     *:not(i) {
@@ -76,8 +76,13 @@
         <!--end overlay-->
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
-        <footer class="page-footer">
-            <p class="mb-0">Powered by <a href="mailto:contact.viicheck.com" class="link text-secondary">ViiCHECK</a></p>
+        <footer class="bg-white shadow-sm border-top p-2 text-center fixed-bottom">
+            <p class="mb-0">
+                Powered by 
+                <a href="mailto:contact.viicheck.com" class="link text-secondary">
+                    <img src="{{ asset('/img/logo-partner/command-center/logo-viicheck-outline.png') }}" width="50" alt="" />
+                </a>
+            </p>
         </footer>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>

@@ -24,7 +24,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'Vote_kan_scoresController@show_score_public');
 Route::get('/show_score_public', 'Vote_kan_scoresController@show_score_public');
 
+// Line login
+Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.line');
+Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
+// Line login by api
 Route::get('/vote_kan_login/{user_from}', 'Vote_kan_data_stationsController@vote_kan_login');
 // Route::get('/vote_kan_login/login/line/{user_from}', 'Auth\LoginController@redirectToLine_vote_kan_login');
 
