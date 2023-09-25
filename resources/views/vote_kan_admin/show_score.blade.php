@@ -166,10 +166,7 @@
 </div> -->
 
 <div id="carousel_sum_score_amphoe" class="carousel slide" data-bs-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="1" class=""></li>
-    </ol>
+    
 
     <div class="carousel-inner">
 
@@ -236,15 +233,25 @@
         </div>
 
     </div>
-
-    <a class="carousel-control-prev" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true" style="color:red !important;"></span>
-        <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true" style="color:red !important;"></span>
-        <span class="visually-hidden">Next</span>
-    </a>
+    <div class="d-flex justify-content-between">
+        <a class="" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style=" background-color: #2366e1 !important;border-radius: 5px;
+	margin: 20px;"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <ol class="carousel-indicators mt-5">
+            <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="0" class="active">
+            </li>
+            <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="1" class="">
+            </li>
+        </ol>
+        <a class="" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" style=" background-color: #2366e1 !important;border-radius: 5px;
+	margin: 20px;"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+    
    
 </div>
 
