@@ -6312,7 +6312,7 @@ fieldset:disabled .btn {
 
 .carousel-control-next,
 .carousel-control-prev {
-	position: absolute;
+/*	position: absolute;*/
 	top: 0;
 	bottom: 0;
 	z-index: 1;

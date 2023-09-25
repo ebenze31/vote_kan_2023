@@ -6,6 +6,15 @@
     .divScore{
         background: linear-gradient(to right, #3b80e9, #1f62e0)!important;
     }
+
+    .divScore-num-1{
+        background: linear-gradient(to right, #fa8532, #ff6a00)!important;
+    }
+
+    .divScore-num-2{
+        background: linear-gradient(to right, #f59fd0, #E476B5)!important;
+    }
+
     .rank_score {
         width: 60px;
         height: 60px;
@@ -58,29 +67,13 @@
 
 <div class="row row-cols-1 row-cols-lg-2 ">
 
-    @php
-
-        if($score_num_1 > $score_num_2){
-            $class_bg_1 = "gold_color_gradient";
-            $class_bg_2 = "divScore";
-        }else if($score_num_1 == $score_num_2){
-            $class_bg_1 = "divScore";
-            $class_bg_2 = "divScore";
-        }
-        else{
-            $class_bg_1 = "divScore";
-            $class_bg_2 = "gold_color_gradient";
-        }
-
-    @endphp
-    
     <div class="col">
-        <div id="card_num_1" class="card radius-10 overflow-hidden {{ $class_bg_1 }}">
+        <div id="card_num_1" class="card radius-10 overflow-hidden divScore-num-1">
             <div class="card-body">
                 <div class="d-flex align-items-center row">
                     <div class="col-12 col-md-6 col-lg-4 col-xl-5  img-section">
                         <div class="col-12 d-flex justify-content-center">
-                            <img class="card-img" style="width: clamp(140px, 75%, 208px);" src="{{ asset('/img/vote_kan/1.png') }}">
+                            <img class="card-img" style="width: clamp(140px, 60%, 208px);" src="{{ asset('/img/vote_kan/1.png') }}">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
@@ -98,12 +91,12 @@
         </div>
     </div>
     <div class="col">
-        <div id="card_num_1" class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
+        <div id="card_num_1" class="card radius-10 overflow-hidden divScore-num-2">
             <div class="card-body">
                 <div class="d-flex align-items-center row">
                     <div class="col-12 col-md-6 col-lg-4 col-xl-5  img-section">
                         <div class="col-12 d-flex justify-content-center">
-                            <img class="card-img" style="width: clamp(140px, 75%, 208px);" src="{{ asset('/img/vote_kan/2.png') }}">
+                            <img class="card-img" style="width: clamp(140px, 60%, 208px);" src="{{ asset('/img/vote_kan/2.png') }}">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
@@ -120,30 +113,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="col">
-        <div id="card_num_2" class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="col">
-                        <div class="col-12 col-md-6 col-lg-4 col-xl-4">
-                            <div class="col-12  d-flex justify-content-center">
-                                <img class="card-img" style="width: clamp(140px, 75%, 208px);" src="{{ asset('/img/vote_kan/2.png') }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-8 col-xl-8 name-section text-center mt-sm-3"> 
-                        <div class="d-flex justify-content-center">
-                            <span class="rank_score divScore text-white mb-3 font-35">2</span>
-                        </div>
-                        <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
-                        <h3 class="mb-0 mt-3 text-white font-weight-bold">
-                            <span id="show_text_score_1">{{ $score_num_2 }}</span> คะแนน
-                        </h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 </div><!--end row-->
 
@@ -196,6 +165,91 @@
     </div>
 </div> -->
 
+<div id="carousel_sum_score_amphoe" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="1" class=""></li>
+    </ol>
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active" data-bs-interval="10000">
+            <div class="card radius-10">
+                <div class="card-header">
+                    <h3>เมืองกาญจนบุรี</h3>
+                </div>
+                <div class="row">
+                    <div class="col-9 card-body">
+                        <div id="เมืองกาญจนบุรี"></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="radius-10 mt-4 bg-gradient-Ohhappiness">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h5 class="mb-0 text-white">นับคะแนนแล้ว</h5>
+                                        <h3 class="mb-0 text-white"><span id="percentage_เมืองกาญจนบุรี">68</span>%</h3>
+                                    </div>
+                                    <div class="ms-auto text-white">
+                                        <i class="fa-solid fa-percent font-30"></i>
+                                    </div>
+                                </div>
+                                <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
+                                    <div class="progress-bar bg-white" role="progressbar" style="width: 68%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="10000">
+            <div class="card radius-10">
+                <div class="card-header">
+                    <h3>ท่ามะกา</h3>
+                </div>
+                <div class="row">
+                    <div class="col-9 card-body">
+                        <div id="ท่ามะกา"></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="radius-10 mt-4 bg-gradient-Ohhappiness">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h5 class="mb-0 text-white">นับคะแนนแล้ว</h5>
+                                        <h3 class="mb-0 text-white"><span id="percentage_ท่ามะกา">14</span>%</h3>
+                                    </div>
+                                    <div class="ms-auto text-white">
+                                        <i class="fa-solid fa-percent font-30"></i>
+                                    </div>
+                                </div>
+                                <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
+                                    <div class="progress-bar bg-white" role="progressbar" style="width: 14%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a class="carousel-control-prev" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="color:red !important;"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="color:red !important;"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+   
+</div>
+
+<hr>
+
 <div class="row row-cols-1 row-cols-lg-4 mb-4">
 
     <!-- เมืองกาญจนบุรี -->
@@ -212,7 +266,7 @@
         }
     @endphp
     <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
+        <!-- <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>เมืองกาญจนบุรี</h3>
             </div>
@@ -220,7 +274,7 @@
                 <div id="เมืองกาญจนบุรี"></div>
             </div>
 
-        </div>
+        </div> -->
     </div>
 
     <!-- ท่ามะกา -->
@@ -237,7 +291,7 @@
         }
     @endphp
     <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
+        <!-- <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>ท่ามะกา</h3>
             </div>
@@ -245,7 +299,7 @@
                 <div id="ท่ามะกา"></div>
             </div>
 
-        </div>
+        </div> -->
     </div>
 
     <!-- ทองผาภูมิ -->
@@ -737,7 +791,7 @@
                 data: [ score_num_1 , score_num_2 ]
             }],
                 chart: {
-                height: 350,
+                height: 150,
                 type: 'bar',
                 events: {
                 click: function(chart, w, e) {
@@ -748,8 +802,23 @@
 
             plotOptions: {
                 bar: {
-                columnWidth: '45%',
-                distributed: true,
+                    // columnWidth: '45%',
+                    borderRadius: 4,
+                    horizontal: true,
+                    distributed: true,
+                    colors: {
+                        ranges: [{
+                            from: score_num_1,
+                            to: score_num_1,
+                            color: '#ff6a00' // กำหนดสีสำหรับเบอร์ 1
+                        }, {
+                            from: score_num_2,
+                            to: score_num_2,
+                            color: '#E476B5' // กำหนดสีสำหรับเบอร์ 2
+                        }],
+                        backgroundBarColors: ['#f2f2f2'], // สีพื้นหลังของแท่งที่ไม่ได้ระบุสี
+                        backgroundBarOpacity: 1
+                    },
                 }
             },
             dataLabels: {
@@ -771,6 +840,7 @@
                 }
             }
         };
+
 
         chart[amphoe] = new ApexCharts(document.querySelector("#"+amphoe),  options[amphoe]);
         chart[amphoe].render();
