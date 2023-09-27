@@ -178,7 +178,6 @@ class Vote_kan_data_stationsController extends Controller
 
             DB::table('users')
                 ->where([ 
-                        ['type', 'line'],
                         ['provider_id', $data_user->provider_id],
                     ])
                 ->update(['role' => 'officer']);

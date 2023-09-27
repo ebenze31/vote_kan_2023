@@ -68,6 +68,7 @@ class LoginController extends Controller
 
         }
 
+        $request->session()->put('check_officer', 'officer');
         $request->session()->put('redirectTo', $re_to);
 
         return Socialite::driver('line')->redirect();
@@ -77,9 +78,11 @@ class LoginController extends Controller
     public function handleLineCallback(Request $request)
     {
         $user = Socialite::driver('line')->stateless()->user();
+        
+        $check_officer = $request->session()->get('check_officer');
 
         // register general
-        $this->_registerOrLoginUser($user);
+        $this->_registerOrLoginUser($user , $check_officer);
         
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -88,7 +91,7 @@ class LoginController extends Controller
 
     }
 
-    protected function _registerOrLoginUser($data)
+    protected function _registerOrLoginUser($data, $check_officer)
     {
         //GET USER 
         $user = User::where('provider_id', '=', $data->id)->first();
@@ -99,9 +102,7 @@ class LoginController extends Controller
             $user = new User();
             $user->name = $data->name;
             $user->provider_id = $data->id;
-            $user->type = $type;
             $user->username = $data->name;
-            $user->status = "active";
 
             if (!empty($data->email)) {
                 $user->email = $data->email;
@@ -140,6 +141,16 @@ class LoginController extends Controller
         //LOGIN
         Auth::login($user);
         // $data_user = Auth::user();
+
+        if ($check_officer == 'officer') {
+            $data_user = Auth::user();
+
+            DB::table('users')
+                ->where([ 
+                        ['provider_id', $data_user->provider_id],
+                    ])
+                ->update(['role' => 'officer']);
+        }
 
     }
 }
