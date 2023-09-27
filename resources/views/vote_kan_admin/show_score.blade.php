@@ -83,7 +83,7 @@
                         </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายสุกวี แสงเป่า</h3>
                         <h3 class="mb-0 mt-3 text-white font-weight-bold">
-                            <span id="show_text_score_1">{{ $score_num_1 }}</span> คะแนน
+                            <span id="show_text_score_1"></span> คะแนน
                         </h3>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                         </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
                         <h3 class="mb-0 mt-3 text-white font-weight-bold">
-                            <span id="show_text_score_2">{{ $score_num_2 }}</span> คะแนน
+                            <span id="show_text_score_2"></span> คะแนน
                         </h3>
                     </div>
                 </div>
@@ -118,97 +118,27 @@
 
 <hr>
 
-<!-- <div class="row mb-3">
-    <div class="col-12 col-lg-8">
-        <div class="card radius-10 w-100 h-100">
-            <h4 class="font-weight-bold m-3">ส่งผลคะแนนแล้ว</h4>
-            <hr class="m-0">
-            <div class="card-body">
-                <div class="table-responsive mt-4 mb-4">
-                    <table class="table align-middle mb-0">
-                        <tbody class="fz_body font-weight-bold">
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ms-2">อำเภอ 1</div>
-                                    </div>
-                                </td>
-                                <td>5,555 คะแนน</td>
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ms-2">อำเภอ 2</div>
-                                    </div>
-                                </td>
-                                <td>4,541 คะแนน</td>
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ms-2">อำเภอ 3</div>
-                                    </div>
-                                </td>
-                                <td>3,000 คะแนน </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-12 col-lg-4">
-        <div class="card radius-10 w-100 h-100">
-            <div id="amphoeSendScoreChart"></div>
-        </div>
-    </div>
-</div> -->
-
+@if(!empty($data_score))
 <div id="carousel_sum_score_amphoe" class="carousel slide" data-bs-ride="carousel">
     
-
     <div class="carousel-inner">
 
-        <div class="carousel-item active" data-bs-interval="10000">
-            <div class="card radius-10">
-                <div class="card-header">
-                    <h3>เมืองกาญจนบุรี</h3>
-                </div>
-                <div class="row">
-                    <div class="col-9 card-body">
-                        <div id="เมืองกาญจนบุรี"></div>
-                    </div>
-                    <div class="col-3">
-                        <div class="radius-10 mt-4 bg-gradient-Ohhappiness">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <h5 class="mb-0 text-white">นับคะแนนแล้ว</h5>
-                                        <h3 class="mb-0 text-white"><span id="percentage_เมืองกาญจนบุรี">68</span>%</h3>
-                                    </div>
-                                    <div class="ms-auto text-white">
-                                        <i class="fa-solid fa-percent font-30"></i>
-                                    </div>
-                                </div>
-                                <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                                    <div class="progress-bar bg-white" role="progressbar" style="width: 68%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @foreach($data_score as $item)
 
-        <div class="carousel-item" data-bs-interval="10000">
+        @php
+            $active = '';
+            if($item->name_amphoe == 'เมืองกาญจนบุรี'){
+                $active = 'active';
+            }
+        @endphp
+        <div class="carousel-item {{ $active }}" data-bs-interval="10000">
             <div class="card radius-10">
                 <div class="card-header">
-                    <h3>ท่ามะกา</h3>
+                    <h3>{{ $item->name_amphoe }}</h3>
                 </div>
                 <div class="row">
                     <div class="col-9 card-body">
-                        <div id="ท่ามะกา"></div>
+                        <div id="{{ $item->name_amphoe }}"></div>
                     </div>
                     <div class="col-3">
                         <div class="radius-10 mt-4 bg-gradient-Ohhappiness">
@@ -216,14 +146,18 @@
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <h5 class="mb-0 text-white">นับคะแนนแล้ว</h5>
-                                        <h3 class="mb-0 text-white"><span id="percentage_ท่ามะกา">14</span>%</h3>
+                                        <h3 class="mb-0 text-white">
+                                            <span id="percentage_{{ $item->name_amphoe }}">
+                                                <!-- percentage  -->
+                                            </span>%
+                                        </h3>
                                     </div>
                                     <div class="ms-auto text-white">
                                         <i class="fa-solid fa-percent font-30"></i>
                                     </div>
                                 </div>
                                 <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                                    <div class="progress-bar bg-white" role="progressbar" style="width: 14%"></div>
+                                    <div id="line_percentage_{{ $item->name_amphoe }}" class="progress-bar bg-white" role="progressbar" ></div>
                                 </div>
                             </div>
                         </div>
@@ -231,6 +165,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
 
     </div>
     <div class="d-flex justify-content-between">
@@ -242,8 +177,10 @@
         <ol class="carousel-indicators mt-5">
             <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="0" class="active">
             </li>
-            <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="1" class="">
+            @for($i = 1; $i < 13 ; $i++)
+            <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="{{ $i }}" class="">
             </li>
+            @endfor
         </ol>
         <a class="" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true" style=" background-color: #2366e1 !important;border-radius: 5px;
@@ -254,363 +191,48 @@
     
    
 </div>
-
 <hr>
-
-<div class="row row-cols-1 row-cols-lg-4 mb-4">
-
-    <!-- เมืองกาญจนบุรี -->
-    @php
-        $data_amphoe_1 = App\Models\Vote_kan_score::where('amphoe' , 'เมืองกาญจนบุรี')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_1_score_num_1 = 0 ;
-        $amphoe_1_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_1 as $amphoe_1) {
-            $amphoe_1_score_num_1 = $amphoe_1_score_num_1 + $amphoe_1->number_1 ;
-            $amphoe_1_score_num_2 = $amphoe_1_score_num_2 + $amphoe_1->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <!-- <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>เมืองกาญจนบุรี</h3>
-            </div>
-            <div class="card-body">
-                <div id="เมืองกาญจนบุรี"></div>
-            </div>
-
-        </div> -->
-    </div>
-
-    <!-- ท่ามะกา -->
-    @php
-        $data_amphoe_2 = App\Models\Vote_kan_score::where('amphoe' , 'ท่ามะกา')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_2_score_num_1 = 0 ;
-        $amphoe_2_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_2 as $amphoe_2) {
-            $amphoe_2_score_num_1 = $amphoe_2_score_num_1 + $amphoe_2->number_1 ;
-            $amphoe_2_score_num_2 = $amphoe_2_score_num_2 + $amphoe_2->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <!-- <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>ท่ามะกา</h3>
-            </div>
-            <div class="card-body">
-                <div id="ท่ามะกา"></div>
-            </div>
-
-        </div> -->
-    </div>
-
-    <!-- ทองผาภูมิ -->
-    @php
-        $data_amphoe_3 = App\Models\Vote_kan_score::where('amphoe' , 'ทองผาภูมิ')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_3_score_num_1 = 0 ;
-        $amphoe_3_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_3 as $amphoe_3) {
-            $amphoe_3_score_num_1 = $amphoe_3_score_num_1 + $amphoe_3->number_1 ;
-            $amphoe_3_score_num_2 = $amphoe_3_score_num_2 + $amphoe_3->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>ทองผาภูมิ</h3>
-            </div>
-            <div class="card-body">
-                <div id="ทองผาภูมิ"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- สังขละบุรี -->
-    @php
-        $data_amphoe_4 = App\Models\Vote_kan_score::where('amphoe' , 'สังขละบุรี')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_4_score_num_1 = 0 ;
-        $amphoe_4_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_4 as $amphoe_4) {
-            $amphoe_4_score_num_1 = $amphoe_4_score_num_1 + $amphoe_4->number_1 ;
-            $amphoe_4_score_num_2 = $amphoe_4_score_num_2 + $amphoe_4->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>สังขละบุรี</h3>
-            </div>
-            <div class="card-body">
-                <div id="สังขละบุรี"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- พนมทวน -->
-    @php
-        $data_amphoe_5 = App\Models\Vote_kan_score::where('amphoe' , 'พนมทวน')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_5_score_num_1 = 0 ;
-        $amphoe_5_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_5 as $amphoe_5) {
-            $amphoe_5_score_num_1 = $amphoe_5_score_num_1 + $amphoe_5->number_1 ;
-            $amphoe_5_score_num_2 = $amphoe_5_score_num_2 + $amphoe_5->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>พนมทวน</h3>
-            </div>
-            <div class="card-body">
-                <div id="พนมทวน"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- เลาขวัญ -->
-    @php
-        $data_amphoe_6 = App\Models\Vote_kan_score::where('amphoe' , 'เลาขวัญ')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_6_score_num_1 = 0 ;
-        $amphoe_6_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_6 as $amphoe_6) {
-            $amphoe_6_score_num_1 = $amphoe_6_score_num_1 + $amphoe_6->number_1 ;
-            $amphoe_6_score_num_2 = $amphoe_6_score_num_2 + $amphoe_6->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>เลาขวัญ</h3>
-            </div>
-            <div class="card-body">
-                <div id="เลาขวัญ"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ศรีสวัสดิ์ -->
-    @php
-        $data_amphoe_7 = App\Models\Vote_kan_score::where('amphoe' , 'ศรีสวัสดิ์')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_7_score_num_1 = 0 ;
-        $amphoe_7_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_7 as $amphoe_7) {
-            $amphoe_7_score_num_1 = $amphoe_7_score_num_1 + $amphoe_7->number_1 ;
-            $amphoe_7_score_num_2 = $amphoe_7_score_num_2 + $amphoe_7->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>ศรีสวัสดิ์</h3>
-            </div>
-            <div class="card-body">
-                <div id="ศรีสวัสดิ์"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ด่านมะขามเตี้ย -->
-    @php
-        $data_amphoe_8 = App\Models\Vote_kan_score::where('amphoe' , 'ด่านมะขามเตี้ย')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_8_score_num_1 = 0 ;
-        $amphoe_8_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_8 as $amphoe_8) {
-            $amphoe_8_score_num_1 = $amphoe_8_score_num_1 + $amphoe_8->number_1 ;
-            $amphoe_8_score_num_2 = $amphoe_8_score_num_2 + $amphoe_8->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>ด่านมะขามเตี้ย</h3>
-            </div>
-            <div class="card-body">
-                <div id="ด่านมะขามเตี้ย"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- หนองปรือ -->
-    @php
-        $data_amphoe_9 = App\Models\Vote_kan_score::where('amphoe' , 'หนองปรือ')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_9_score_num_1 = 0 ;
-        $amphoe_9_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_9 as $amphoe_9) {
-            $amphoe_9_score_num_1 = $amphoe_9_score_num_1 + $amphoe_9->number_1 ;
-            $amphoe_9_score_num_2 = $amphoe_9_score_num_2 + $amphoe_9->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>หนองปรือ</h3>
-            </div>
-            <div class="card-body">
-                <div id="หนองปรือ"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ห้วยกระเจา -->
-    @php
-        $data_amphoe_10 = App\Models\Vote_kan_score::where('amphoe' , 'ห้วยกระเจา')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_10_score_num_1 = 0 ;
-        $amphoe_10_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_10 as $amphoe_10) {
-            $amphoe_10_score_num_1 = $amphoe_10_score_num_1 + $amphoe_10->number_1 ;
-            $amphoe_10_score_num_2 = $amphoe_10_score_num_2 + $amphoe_10->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>ห้วยกระเจา</h3>
-            </div>
-            <div class="card-body">
-                <div id="ห้วยกระเจา"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ท่าม่วง -->
-    @php
-        $data_amphoe_11 = App\Models\Vote_kan_score::where('amphoe' , 'ท่าม่วง')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_11_score_num_1 = 0 ;
-        $amphoe_11_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_11 as $amphoe_11) {
-            $amphoe_11_score_num_1 = $amphoe_11_score_num_1 + $amphoe_11->number_1 ;
-            $amphoe_11_score_num_2 = $amphoe_11_score_num_2 + $amphoe_11->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>ท่าม่วง</h3>
-            </div>
-            <div class="card-body">
-                <div id="ท่าม่วง"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- บ่อพลอย -->
-    @php
-        $data_amphoe_12 = App\Models\Vote_kan_score::where('amphoe' , 'บ่อพลอย')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_12_score_num_1 = 0 ;
-        $amphoe_12_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_12 as $amphoe_12) {
-            $amphoe_12_score_num_1 = $amphoe_12_score_num_1 + $amphoe_12->number_1 ;
-            $amphoe_12_score_num_2 = $amphoe_12_score_num_2 + $amphoe_12->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>บ่อพลอย</h3>
-            </div>
-            <div class="card-body">
-                <div id="บ่อพลอย"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ไทรโยค -->
-    @php
-        $data_amphoe_13 = App\Models\Vote_kan_score::where('amphoe' , 'ไทรโยค')
-            ->where('last', 'Yes')->get();
-
-        $amphoe_13_score_num_1 = 0 ;
-        $amphoe_13_score_num_2 = 0 ;
-
-        foreach ($data_amphoe_13 as $amphoe_13) {
-            $amphoe_13_score_num_1 = $amphoe_13_score_num_1 + $amphoe_13->number_1 ;
-            $amphoe_13_score_num_2 = $amphoe_13_score_num_2 + $amphoe_13->number_2;
-        }
-    @endphp
-    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
-        <div class="card radius-10 h-100">
-            <div class="card-header">
-                <h3>ไทรโยค</h3>
-            </div>
-            <div class="card-body">
-                <div id="ไทรโยค"></div>
-            </div>
-
-        </div>
-    </div>
-
-</div><!--end row-->
+@endif
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-<!-- <script>
-    let options = {
-          series: [21, 22],
-          chart: {
-          type: 'donut',
-        },
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
-        };
+<script>
+    let score_num_1 = 0;
+    let score_num_2 = 0;
+    let amount_person = [] ;
+    let percentage ;
+    let score_number_1 ;
+    let score_number_2 ;
 
-        let chart = new ApexCharts(document.querySelector("#amphoeSendScoreChart"), options);
-        chart.render();
+    @foreach($data_score as $data_item)
+        
+        percentage = 0;
 
-</script> -->
+        @if(!empty($data_item->number_1))
+            score_num_1 = score_num_1 + parseInt("{{ $data_item->number_1 }}");
+        @endif
+        @if(!empty($data_item->number_2))
+            score_num_2 = score_num_2 + parseInt("{{ $data_item->number_2 }}");
+        @endif
+
+        amount_person['amphoe_{{ $data_item->id }}'] = parseInt("{{ $data_item->Amount_person }}") ;
+
+        score_number_1 = parseInt("{{ $data_item->number_1 }}");
+        score_number_2 = parseInt("{{ $data_item->number_2 }}");
+
+        if(amount_person['amphoe_{{ $data_item->id }}'] && score_number_1 && score_number_2){
+            percentage = ( (score_number_1 + score_number_2) / amount_person['amphoe_{{ $data_item->id }}'] ) * 100 ;
+        }
+
+        document.querySelector('#percentage_{{ $data_item->name_amphoe }}').innerHTML = percentage.toFixed(2);
+        document.querySelector('#line_percentage_{{ $data_item->name_amphoe }}').style = "width:"+percentage+"%";
+
+    @endforeach
+
+    document.querySelector('#show_text_score_1').innerHTML = score_num_1.toString();
+    document.querySelector('#show_text_score_2').innerHTML = score_num_2.toString();
+</script>
+
 
 <script>
 
@@ -628,10 +250,13 @@
         var reface_Create_graph = setInterval(function() {
             loop_Create_graph();
         }, 60000);
+        // }, 25000);
 
     });
 
     function loop_Create_graph(){
+
+        // console.log('loop_Create_graph');
 
         fetch("{{ url('/') }}/api/get_data_show_score")
             .then(response => response.json())
@@ -651,30 +276,6 @@
 
                 score_num_1 = result['sum_num_1'] ;
                 score_num_2 = result['sum_num_2'] ;
-
-                let class_bg_1 = "gold_color_gradient";
-                let class_bg_2 = "divScore";
-
-                if(score_num_1 > score_num_2){
-                    class_bg_1 = "gold_color_gradient";
-                    class_bg_2 = "divScore";
-                }else if(score_num_1 == score_num_2){
-                    class_bg_1 = "divScore";
-                    class_bg_2 = "divScore";
-                }
-                else{
-                    class_bg_1 = "divScore";
-                    class_bg_2 = "gold_color_gradient";
-                }
-
-                let n11111 = document.querySelector('#card_num_1').classList[3];
-                let n22222 = document.querySelector('#card_num_2').classList[3];
-
-                document.querySelector('#card_num_1').classList.remove(n11111);
-                document.querySelector('#card_num_2').classList.remove(n22222);
-
-                document.querySelector('#card_num_1').classList.add(class_bg_1);
-                document.querySelector('#card_num_2').classList.add(class_bg_2);
 
                 update_score_num_1 = {
                     "amphoe_1" : result['score_amphoe_num_1']['amphoe_1'],
@@ -708,6 +309,23 @@
                     "amphoe_13" : result['score_amphoe_num_2']['amphoe_13'],
                 };
 
+                amount_person = [];
+                amount_person = {
+                    "amphoe_1" : result['amount_person']['amphoe_1'],
+                    "amphoe_2" : result['amount_person']['amphoe_2'],
+                    "amphoe_3" : result['amount_person']['amphoe_3'],
+                    "amphoe_4" : result['amount_person']['amphoe_4'],
+                    "amphoe_5" : result['amount_person']['amphoe_5'],
+                    "amphoe_6" : result['amount_person']['amphoe_6'],
+                    "amphoe_7" : result['amount_person']['amphoe_7'],
+                    "amphoe_8" : result['amount_person']['amphoe_8'],
+                    "amphoe_9" : result['amount_person']['amphoe_9'],
+                    "amphoe_10" : result['amount_person']['amphoe_10'],
+                    "amphoe_11" : result['amount_person']['amphoe_11'],
+                    "amphoe_12" : result['amount_person']['amphoe_12'],
+                    "amphoe_13" : result['amount_person']['amphoe_13'],
+                };
+
                 for (let zi = 0; zi < 13; zi++) {
                     let name_key = "amphoe_" + parseInt(zi + 1);
 
@@ -716,6 +334,19 @@
                         update_score_num_1[name_key],
                         update_score_num_2[name_key]
                     );
+
+                    percentage = 0;
+
+                    score_number_1 = parseInt(update_score_num_1[name_key]);
+                    score_number_2 = parseInt(update_score_num_2[name_key]);
+
+                    if(amount_person["amphoe_" + parseInt(zi + 1)] && score_number_1 && score_number_2){
+                        percentage = ( (score_number_1 + score_number_2) / amount_person["amphoe_" + parseInt(zi + 1)] ) * 100 ;
+                    }
+
+                    document.querySelector('#percentage_'+name_amphoe["amphoe_" + parseInt(zi + 1)]).innerHTML = percentage.toFixed(2);
+                    document.querySelector('#line_percentage_'+name_amphoe["amphoe_" + parseInt(zi + 1)]).style = "width:"+percentage+"%";
+
                 }
 
             });
@@ -731,8 +362,6 @@
 
     
     // ---------------------------------------
-    var score_num_1 = "{{ $score_num_1 }}" ;
-    var score_num_2 = "{{ $score_num_2 }}" ;
     var update_score_num_1 = [];
     var update_score_num_2 = [];
     var name_amphoe = [];
@@ -754,35 +383,15 @@
     };
 
     update_score_num_1 = {
-        "amphoe_1" : "{{ $amphoe_1_score_num_1 }}",
-        "amphoe_2" : "{{ $amphoe_2_score_num_1 }}",
-        "amphoe_3" : "{{ $amphoe_3_score_num_1 }}",
-        "amphoe_4" : "{{ $amphoe_4_score_num_1 }}",
-        "amphoe_5" : "{{ $amphoe_5_score_num_1 }}",
-        "amphoe_6" : "{{ $amphoe_6_score_num_1 }}",
-        "amphoe_7" : "{{ $amphoe_7_score_num_1 }}",
-        "amphoe_8" : "{{ $amphoe_8_score_num_1 }}",
-        "amphoe_9" : "{{ $amphoe_9_score_num_1 }}",
-        "amphoe_10" : "{{ $amphoe_10_score_num_1 }}",
-        "amphoe_11" : "{{ $amphoe_11_score_num_1 }}",
-        "amphoe_12" : "{{ $amphoe_12_score_num_1 }}",
-        "amphoe_13" : "{{ $amphoe_13_score_num_1 }}",
+        @foreach($data_score as $data)
+            "amphoe_{{ $data->id }}" : "{{ $data->number_1 }}",
+        @endforeach
     };
 
     update_score_num_2 = {
-        "amphoe_1" : "{{ $amphoe_1_score_num_2 }}",
-        "amphoe_2" : "{{ $amphoe_2_score_num_2 }}",
-        "amphoe_3" : "{{ $amphoe_3_score_num_2 }}",
-        "amphoe_4" : "{{ $amphoe_4_score_num_2 }}",
-        "amphoe_5" : "{{ $amphoe_5_score_num_2 }}",
-        "amphoe_6" : "{{ $amphoe_6_score_num_2 }}",
-        "amphoe_7" : "{{ $amphoe_7_score_num_2 }}",
-        "amphoe_8" : "{{ $amphoe_8_score_num_2 }}",
-        "amphoe_9" : "{{ $amphoe_9_score_num_2 }}",
-        "amphoe_10" : "{{ $amphoe_10_score_num_2 }}",
-        "amphoe_11" : "{{ $amphoe_11_score_num_2 }}",
-        "amphoe_12" : "{{ $amphoe_12_score_num_2 }}",
-        "amphoe_13" : "{{ $amphoe_13_score_num_2 }}",
+        @foreach($data_score as $data)
+            "amphoe_{{ $data->id }}" : "{{ $data->number_2 }}",
+        @endforeach
     };
 
     // ---------------------------------------
@@ -806,26 +415,12 @@
                 }
                 }
             },
-
+            colors: ["#ff6a00", "#E476B5"],
             plotOptions: {
                 bar: {
-                    // columnWidth: '45%',
                     borderRadius: 4,
                     horizontal: true,
                     distributed: true,
-                    colors: {
-                        ranges: [{
-                            from: score_num_1,
-                            to: score_num_1,
-                            color: '#ff6a00' // กำหนดสีสำหรับเบอร์ 1
-                        }, {
-                            from: score_num_2,
-                            to: score_num_2,
-                            color: '#E476B5' // กำหนดสีสำหรับเบอร์ 2
-                        }],
-                        backgroundBarColors: ['#f2f2f2'], // สีพื้นหลังของแท่งที่ไม่ได้ระบุสี
-                        backgroundBarOpacity: 1
-                    },
                 }
             },
             dataLabels: {
@@ -848,6 +443,10 @@
             }
         };
 
+        if(chart[amphoe]){
+            chart[amphoe].destroy();
+            chart[amphoe] = null ;
+        }
 
         chart[amphoe] = new ApexCharts(document.querySelector("#"+amphoe),  options[amphoe]);
         chart[amphoe].render();

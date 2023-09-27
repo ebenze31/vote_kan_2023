@@ -22,3 +22,4 @@ Route::get('/get_location_kan/{amphoe}/show_area','Vote_kan_data_stationsControl
 Route::get('/get_location_kan/{amphoe}/{area}/show_tambon','Vote_kan_data_stationsController@show_tambon');
 Route::get('/get_location_kan/{amphoe}/{area}/{tambon}/show_polling_station_at','Vote_kan_data_stationsController@show_polling_station_at');
 Route::get('/get_data_show_score','Vote_kan_scoresController@get_data_show_score');
+Route::get('submit_quantity_person/{quantity_person}/{id_station}', 'Vote_kan_stationsController@submit_quantity_person');

@@ -257,4 +257,37 @@ class Vote_kan_stationsController extends Controller
 
         return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station deleted!');
     }
+
+    function submit_quantity_person($quantity_person , $id_station){
+
+        DB::table('vote_kan_stations')
+            ->where([ 
+                    ['id', $id_station],
+                ])
+            ->update([
+                    'quantity_person' => $quantity_person,
+                ]);
+
+        $data_station = Vote_kan_station::where('id' , $id_station)->select('amphoe')->first();
+
+        $all_station_in_amphoe = Vote_kan_station::where('amphoe',$data_station->amphoe)
+            ->select('quantity_person')
+            ->get();
+
+        $sum_quantity_person = 0 ;
+        foreach ($all_station_in_amphoe as $item) {
+            $sum_quantity_person = $sum_quantity_person + $item->quantity_person ;
+        }
+
+        DB::table('vote_kan_all_scores')
+            ->where([ 
+                    ['name_amphoe', $data_station->amphoe],
+                ])
+            ->update([
+                    'Amount_person' => $sum_quantity_person,
+                ]);
+
+        return "OK" ;
+
+    }
 }

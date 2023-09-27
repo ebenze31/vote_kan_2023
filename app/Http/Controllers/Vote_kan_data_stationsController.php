@@ -160,36 +160,32 @@ class Vote_kan_data_stationsController extends Controller
         return $data_polling_station_at;
     }
 
-    public function vote_kan_login(Request $request , $user_from)
+    public function vote_kan_login(Request $request , $go_to)
     {
+        if($go_to == "register_stations"){
+
+            $re_to = 'vote_kan_stations/create' ;
+
+        }else if($go_to == "submit_scores"){
+            
+            $re_to = 'vote_kan_scores/create' ;
+
+        }
+
         if(Auth::check()){
 
             $data_user = Auth::user();
-
-            if ( !empty($data_user->user_from) ){
-
-                $check_user_from = explode(",",$data_user->user_from);
-
-                if ( in_array( $user_from , $check_user_from ) ){
-                    $update_user_from = $data_user->user_from ;
-                }else{
-                    $update_user_from = $data_user->user_from .','. $user_from ;
-                }
-
-            }else{
-                $update_user_from = $user_from ;
-            }
 
             DB::table('users')
                 ->where([ 
                         ['type', 'line'],
                         ['provider_id', $data_user->provider_id],
                     ])
-                ->update(['user_from' => $update_user_from]);
+                ->update(['role' => 'officer']);
 
-            return redirect('vote_kan_stations/create');
+            return redirect($re_to);
         }else{
-            return redirect('vote_kan_login/login/line/'.$user_from.'?redirectTo=vote_kan_stations/create');
+            return redirect('vote_kan_login/login/line/'.$go_to);
         }
     }
 
