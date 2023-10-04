@@ -15,7 +15,6 @@ $totalCount = 0;
         <thead>
             <tr>
                 <th>อำเภอ</th>
-                <th>เขตเลือกตั้ง</th>
                 <th>ตำบล</th>
                 <th>หน่วยที่ยังไม่ลงทะเบียน</th>
             </tr>
@@ -30,7 +29,6 @@ $totalCount = 0;
                 @endphp
             <tr>
                 <td>{{ $item->amphoe }}</td>
-                <td>{{ $item->area}}</td>
                 <td>{{ $item->tambon}}</td>
                 <td>{{ $not_registered }}</td>
             </tr>
@@ -39,7 +37,6 @@ $totalCount = 0;
         <tfoot>
             <tr>
                 <th>อำเภอ</th>
-                <th>เขตเลือกตั้ง</th>
                 <th>ตำบล</th>
                 <th>หน่วยที่ยังไม่ลงทะเบียน</th>
             </tr>

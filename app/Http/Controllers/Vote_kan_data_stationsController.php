@@ -195,7 +195,6 @@ class Vote_kan_data_stationsController extends Controller
 
         if (!empty($keyword)) {
             $vote_kan_data_not_registered = Vote_kan_data_station::where('amphoe', 'LIKE', "%$keyword%")
-                ->orWhere('area', 'LIKE', "%$keyword%")
                 ->orWhere('tambon', 'LIKE', "%$keyword%")
                 ->orWhere('polling_station_at', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
