@@ -60,11 +60,11 @@ class LoginController extends Controller
     {   
         if($go_to == "register_stations"){
 
-            $re_to = '../vote_kan_stations/create' ;
+            $re_to = 'http://itkanpao.dyndns.org/vote_kan_2023/public/vote_kan_stations/create' ;
 
         }else if($go_to == "submit_scores"){
 
-            $re_to = '../vote_kan_scores/create' ;
+            $re_to = 'http://itkanpao.dyndns.org/vote_kan_2023/public/vote_kan_scores/create' ;
 
         }
 
