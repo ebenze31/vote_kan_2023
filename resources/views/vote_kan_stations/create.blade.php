@@ -53,7 +53,7 @@
                         <span class="text-danger">*</span>
                         <div class="input-group">
                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-map"></i></span>
-                            <select name="amphoe" id="amphoe" class="form-control" required onchange="show_area();">
+                            <select name="amphoe" id="amphoe" class="form-control" required onchange="show_tambon();">
                                 <option value="" selected > - กรุณาเลือกอำเภอ  - </option>
                                 @foreach($data as $item)
                                     <option value="{{ $item->amphoe }}" >{{ $item->amphoe }}</option>
@@ -61,7 +61,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-12 mb-2">
+                    <!-- <div class="col-12 mb-2">
                         <label for="area" class="form-label">เขตเลือกตั้ง</label>
                         <span class="text-danger">*</span>
                         <div class="input-group">
@@ -70,7 +70,7 @@
                                 <option value="" selected > - กรุณาเลือกเขตเลือกตั้ง  - </option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-12 mb-2">
                         <label for="tambon" class="form-label">ตำบล</label>
                         <span class="text-danger">*</span>
@@ -123,12 +123,12 @@
                         </h6>
                         <span class="text-secondary">{{ $check_user->amphoe }}</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                         <h6 class="mb-0">
                             เขตเลือกตั้ง
                         </h6>
                         <span class="text-secondary">{{ $check_user->area }}</span>
-                    </li>
+                    </li> -->
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                         <h6 class="mb-0">
                             ตำบล
@@ -166,43 +166,11 @@
             // console.log("START");
         });
 
-        function show_area(){
-
-            let amphoe = document.querySelector("#amphoe");
-
-            fetch("{{ url('/') }}/api/get_location_kan/"+amphoe.value+"/show_area")
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-                    //UPDATE SELECT OPTION
-                    let area = document.querySelector("#area");
-                        area.innerHTML = "";
-
-                    let option_2 = document.createElement("option");
-                        option_2.text = " - กรุณาเลือกเขตเลือกตั้ง  - ";
-                        option_2.value = null;
-                        option_2.selected = true;
-                        area.add(option_2);
-
-                    for(let item of result){
-                        let option = document.createElement("option");
-                        option.text = item.area;
-                        option.value = item.area;
-                        area.add(option);
-                    }
-
-                    
-                });
-
-            return "OK";
-        }
-
         function show_tambon(){
 
             let amphoe = document.querySelector("#amphoe");
-            let area = document.querySelector("#area");
 
-            fetch("{{ url('/') }}/api/get_location_kan/"+amphoe.value+"/"+area.value+"/show_tambon")
+            fetch("{{ url('/') }}/api/get_location_kan/"+amphoe.value+"/show_tambon")
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);
@@ -232,10 +200,9 @@
         function show_polling_station_at(){
 
             let amphoe = document.querySelector("#amphoe");
-            let area = document.querySelector("#area");
             let tambon = document.querySelector("#tambon");
 
-            fetch("{{ url('/') }}/api/get_location_kan/"+amphoe.value+"/"+area.value+"/"+tambon.value+"/show_polling_station_at")
+            fetch("{{ url('/') }}/api/get_location_kan/"+amphoe.value+"/"+tambon.value+"/show_polling_station_at")
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);

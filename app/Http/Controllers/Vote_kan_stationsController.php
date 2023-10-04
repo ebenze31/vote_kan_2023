@@ -10,6 +10,7 @@ use App\Models\Vote_kan_station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Person_of_polling_station;
 
 class Vote_kan_stationsController extends Controller
 {
@@ -28,7 +29,6 @@ class Vote_kan_stationsController extends Controller
                 ->orWhere('province', 'LIKE', "%$keyword%")
                 ->orWhere('amphoe', 'LIKE', "%$keyword%")
                 ->orWhere('tambon', 'LIKE', "%$keyword%")
-                ->orWhere('area', 'LIKE', "%$keyword%")
                 ->orWhere('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('name_user', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
@@ -69,11 +69,18 @@ class Vote_kan_stationsController extends Controller
     {
         
         $requestData = $request->all();
-        
+
+        $data_person = Person_of_polling_station::where('amphoe' , $requestData['amphoe'])
+            ->where('tambon' , $requestData['tambon'])
+            ->where('polling_station_at' , $requestData['polling_station_at'])
+            ->select('quantity_person')
+            ->first();
+
+        $requestData['quantity_person'] = $data_person->quantity_person ;
+
         Vote_kan_station::create($requestData);
 
         $data_old = Vote_kan_data_station::where('amphoe' , $requestData['amphoe'])
-            ->where('area' , $requestData['area'])
             ->where('tambon' , $requestData['tambon'])
             ->first();
 
@@ -102,7 +109,6 @@ class Vote_kan_stationsController extends Controller
         DB::table('vote_kan_data_stations')
             ->where([ 
                     ['amphoe', $requestData['amphoe']],
-                    ['area', $requestData['area']],
                     ['tambon', $requestData['tambon']],
                 ])
             ->update([
@@ -164,7 +170,6 @@ class Vote_kan_stationsController extends Controller
 
         // ------------- แก้ไขเอาหน่วยที่ลงผผิดไปกลับมา
         $data_for_edit = Vote_kan_data_station::where('amphoe' , $requestData['old_amphoe'])
-            ->where('area' , $requestData['old_area'])
             ->where('tambon' , $requestData['old_tambon'])
             ->first();
 
@@ -192,7 +197,6 @@ class Vote_kan_stationsController extends Controller
         DB::table('vote_kan_data_stations')
             ->where([ 
                     ['amphoe', $requestData['old_amphoe']],
-                    ['area', $requestData['old_area']],
                     ['tambon', $requestData['old_tambon']],
                 ])
             ->update([
@@ -203,7 +207,6 @@ class Vote_kan_stationsController extends Controller
 
         // --------------- update ข้อมูลใหม่
         $data_old = Vote_kan_data_station::where('amphoe' , $requestData['amphoe'])
-            ->where('area' , $requestData['area'])
             ->where('tambon' , $requestData['tambon'])
             ->first();
 
@@ -232,7 +235,6 @@ class Vote_kan_stationsController extends Controller
         DB::table('vote_kan_data_stations')
             ->where([ 
                     ['amphoe', $requestData['amphoe']],
-                    ['area', $requestData['area']],
                     ['tambon', $requestData['tambon']],
                 ])
             ->update([

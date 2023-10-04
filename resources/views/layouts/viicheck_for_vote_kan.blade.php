@@ -67,6 +67,42 @@
     }
 </style>
 <body>
+    <!-- Modal -->
+    <div class="modal fade" id="modal_reset" data-backdrop="static" data-keyboard="false" tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="z-index:999999999!important;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">รีเซ็ต หน่วย / คะแนน</h5>
+            <button id="btn_close_modal_reset" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <center>
+                <img src="{{ url('/img/STK/warning.png') }}" class="m-2" width="60%" >
+            </center>
+            <h3 class="mt-3 mb-3 text-danger">
+                ยืนยัน
+                <br>
+                การรีเซ็ต หน่วย / คะแนน หรือไม่
+            </h3>
+            <div class="d-none" id="spinner_of_reset_stations">
+                <a href="javascript:;" class="" aria-expanded="false">
+                    <div class="parent-icon">
+                        <div class="spinner-border text-success" role="status" ></div>
+                    </div>
+                    <div class="menu-title text-success">Loading...</div>
+                </a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <span type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</span>
+            <span type="button" class="btn btn-info" onclick="reset_stations();">ยืนยัน</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--wrapper-->
     <div class="wrapper">
         <!--sidebar wrapper -->
@@ -124,10 +160,39 @@
                         </li>
                     </ul>
                 </li>
+
+                @if( Auth::user()->role == "admin" )
+                    <li>
+                        <a href="javascript:;" class="" aria-expanded="false" data-toggle="modal" data-target="#modal_reset" >
+                            <div class="parent-icon">
+                                <i class="fa-solid fa-repeat text-danger"></i>
+                            </div>
+                            <div class="menu-title">รีเซ็ต หน่วย / คะแนน</div>
+                        </a>
+                    </li>
+                @endif
                 
             </ul>
             @endif
             <!--end navigation-->
+            <script>
+                function reset_stations(){
+
+                    document.querySelector('#spinner_of_reset_stations').classList.remove('d-none');
+
+                    fetch("{{ url('/') }}/reset_vote_kan_data_stations/")
+                        .then(response => response.text())
+                        .then(result => {
+                            // console.log(result);
+                            if (result == "ดำเนินการเรียบร้อย") {
+                                document.querySelector('#spinner_of_reset_stations').classList.add('d-none');
+                                document.querySelector('#btn_close_modal_reset').click();
+                            }
+
+                        });
+                }
+            </script>
+
         </div>
         <!--end sidebar wrapper -->
         <!--start header -->

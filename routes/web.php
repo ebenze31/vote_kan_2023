@@ -19,7 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/reset_vote_kan_data_stations', 'HomeController@reset_vote_kan_data_stations');
 
 // show_score_public
 Route::get('/', 'Vote_kan_scoresController@show_score_public');
@@ -43,4 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
     Route::get('vote_kan_stations_not_registered', 'Vote_kan_data_stationsController@not_registered'); // index
 
+    // reset stations
+    Route::get('/reset_vote_kan_data_stations', 'HomeController@reset_vote_kan_data_stations');
+
 });
+Route::resource('person_of_polling_station', 'Person_of_polling_stationController');

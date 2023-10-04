@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ $item->created_at }}</td>
                     <td>
-                        {{ $item->vote_kan_station->amphoe }} เขต {{ $item->vote_kan_station->area }} ตำบล{{ $item->vote_kan_station->tambon }} หน่วยเลือกตั้งที่ {{ $item->vote_kan_station->polling_station_at }}
+                        {{ $item->vote_kan_station->amphoe }} ตำบล{{ $item->vote_kan_station->tambon }} หน่วยเลือกตั้งที่ {{ $item->vote_kan_station->polling_station_at }}
                     </td>
                     <td>{{ $item->number_1}}</td>
                     <td>{{ $item->number_2 }}</td>

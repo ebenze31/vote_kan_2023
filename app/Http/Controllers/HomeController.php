@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Vote_kan_data_station;
 use Illuminate\Support\Facades\DB;
 use App\Models\Vote_kan_station;
+use App\Models\Vote_kan_score;
 
 class HomeController extends Controller
 {
@@ -47,13 +48,10 @@ class HomeController extends Controller
                 ->where([ 
                         ['id', $item->id],
                     ])
-                ->update(['not_registered' => $xb]);
-
-            DB::table('vote_kan_data_stations')
-                ->where([ 
-                        ['id', $item->id],
-                    ])
-                ->update(['registered' => null]);
+                ->update([
+                    'not_registered' => $xb,
+                    'registered' => null,
+                ]);
 
             // echo "polling_station_at >> " . $item->polling_station_at;
             // echo "<br>";
@@ -61,8 +59,20 @@ class HomeController extends Controller
             // echo "<br>";
         }
 
+        for ($ix=1; $ix <= 13 ; $ix++) { 
+            DB::table('vote_kan_all_scores')
+                ->where([ 
+                        ['id', $ix],
+                    ])
+                ->update([
+                    'number_1' => null,
+                    'number_2' => null,
+                ]);
+        }
+
 
         Vote_kan_station::truncate();
+        Vote_kan_score::truncate();
 
         return "ดำเนินการเรียบร้อย" ;
     }

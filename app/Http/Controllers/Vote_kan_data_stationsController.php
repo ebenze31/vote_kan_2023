@@ -24,7 +24,6 @@ class Vote_kan_data_stationsController extends Controller
 
         if (!empty($keyword)) {
             $vote_kan_data_stations = Vote_kan_data_station::where('amphoe', 'LIKE', "%$keyword%")
-                ->orWhere('area', 'LIKE', "%$keyword%")
                 ->orWhere('tambon', 'LIKE', "%$keyword%")
                 ->orWhere('polling_station_at', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
@@ -123,36 +122,22 @@ class Vote_kan_data_stationsController extends Controller
         return redirect('vote_kan_data_stations')->with('flash_message', 'Vote_kan_data_station deleted!');
     }
 
-    public function show_area($amphoe)
-    {
-        $data_area = DB::table('vote_kan_data_stations')
-                        ->select('area')
-                        ->where('amphoe',$amphoe)
-                        ->where('not_registered','!=',null)
-                        ->groupBy('area')
-                        ->get();
-
-        return $data_area;
-    }
-
-    public function show_tambon($amphoe,$area)
+    public function show_tambon($amphoe)
     {
         $data_tambon = DB::table('vote_kan_data_stations')
                         ->select('tambon')
                         ->where('amphoe',$amphoe)
-                        ->where('area',$area)
                         ->where('not_registered','!=',null)
                         ->get();
 
         return $data_tambon;
     }
 
-    public function show_polling_station_at($amphoe,$area,$tambon)
+    public function show_polling_station_at($amphoe,$tambon)
     {
         $data_polling_station_at = DB::table('vote_kan_data_stations')
                         ->select('not_registered')
                         ->where('amphoe',$amphoe)
-                        ->where('area',$area)
                         ->where('tambon',$tambon)
                         ->where('not_registered','!=',null)
                         ->get();

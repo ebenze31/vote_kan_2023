@@ -21,8 +21,9 @@
     $count_data_score = count($data_score);
 @endphp
 
+@if(!empty($data_station->amphoe))
 <!-- Modal -->
-<div class="modal fade" id="modal_quantity_person" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_quantity_person" aria-hidden="true" style="z-index: 99999;">
+<!-- <div class="modal fade" id="modal_quantity_person" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_quantity_person" aria-hidden="true" style="z-index: 99999;">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -61,9 +62,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="card border-top border-0 border-4 border-danger m-2">
+<!-- <div class="card border-top border-0 border-4 border-danger m-2">
     <div class="card-body px-2 py-3">
         <h5>
             ผู้ลงคะแนน : <span id="show_text_quantity_person">{{ number_format($data_station->quantity_person) }}</span> คน
@@ -72,7 +73,7 @@
             </span>
         </h5>
     </div>
-</div>
+</div> -->
 
 <div class="card border-top border-0 border-4 border-danger m-2">
     <div class="card-body  px-4 py-5">
@@ -147,7 +148,19 @@
     </div>
 
 </div>
-
+@else
+<div class="card border-top border-0 border-4 border-danger m-2 text-center">
+    <center>
+        <img src="{{ url('/img/STK/warning.png') }}" class="m-2" width="60%" >
+    </center>
+    <h3 class="mt-3 mb-3 text-danger">
+        คุณยังไม่ได้ลงทะเบียน
+    </h3>
+    <a href="{{ url('/vote_kan_stations/create') }}" class="btn btn-success px-5 m-3">
+        ลงทะเบียนหน่วยเลือกตั้ง
+    </a>
+</div>
+@endif
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
@@ -201,16 +214,16 @@
 
     
 
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        // ตรวจสอบข้อมูลผู้มาลงคะแนน
-        let check_quantity_person = "{{ $data_station->quantity_person }}" ;
-            // console.log(check_quantity_person);
+    // document.addEventListener('DOMContentLoaded', (event) => {
+    //     // console.log("START");
+    //     // ตรวจสอบข้อมูลผู้มาลงคะแนน
+    //     let check_quantity_person = "{ $data_station->quantity_person }" ;
+    //         // console.log(check_quantity_person);
 
-        if(!check_quantity_person){
-            document.querySelector('#btn_open_quantity_person').click();
-        }
-    });
+    //     if(!check_quantity_person){
+    //         document.querySelector('#btn_open_quantity_person').click();
+    //     }
+    // });
 
     function submit_quantity_person(){
 
