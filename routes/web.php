@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/reset_vote_kan_data_stations', 'HomeController@reset_vote_kan_data_stations');
 
 // show_score_public
 Route::get('/', 'Vote_kan_scoresController@show_score_public');

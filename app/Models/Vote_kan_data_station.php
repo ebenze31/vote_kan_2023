@@ -25,7 +25,7 @@ class Vote_kan_data_station extends Model
      *
      * @var array
      */
-    protected $fillable = ['amphoe', 'area', 'tambon', 'polling_station_at', 'not_registered', 'registered'];
+    protected $fillable = ['amphoe', 'tambon', 'polling_station_at', 'not_registered', 'registered'];
 
     
 }

@@ -53,11 +53,11 @@
 
 
 <div class="row ">
-    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-        <h1>ผลการนับคะแนนอย่างไม่เป็นทางการ</h1>
+    <div class="col-12">
+        <img src="{{ asset('/img/vote_kan/banner.png') }}" class="banner_pc" style="width:100%;" alt="">
     </div>
-    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-        <span class="float-end">
+    <div class="col-12">
+        <span class="float-end mt-3">
             อัพเดทล่าสุด : <span id="time_update_data">{{ date("H:i") }} น.</span>
         </span>
     </div>
@@ -73,12 +73,11 @@
                 <div class="d-flex align-items-center row">
                     <div class="col-12 col-md-6 col-lg-4 col-xl-5  img-section">
                         <div class="col-12 d-flex justify-content-center">
-                            <img class="card-img" style="width: clamp(140px, 60%, 208px);" src="{{ asset('/img/vote_kan/1.png') }}">
+                            <img class="card-img" style="width: clamp(140px, 75%, 208px);" src="{{ asset('/img/vote_kan/1.png') }}">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
                         <div class="d-flex justify-content-center">
-
                             <span class="rank_score divScore text-white mb-3 font-35">1</span>
                         </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายสุกวี แสงเป่า</h3>
@@ -96,12 +95,11 @@
                 <div class="d-flex align-items-center row">
                     <div class="col-12 col-md-6 col-lg-4 col-xl-5  img-section">
                         <div class="col-12 d-flex justify-content-center">
-                            <img class="card-img" style="width: clamp(140px, 60%, 208px);" src="{{ asset('/img/vote_kan/2.png') }}">
+                            <img class="card-img" style="width: clamp(140px, 75%, 208px);" src="{{ asset('/img/vote_kan/2.png') }}">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
                         <div class="d-flex justify-content-center">
-
                             <span class="rank_score divScore text-white mb-3 font-35">2</span>
                         </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
@@ -113,10 +111,76 @@
             </div>
         </div>
     </div>
-
 </div><!--end row-->
 
-<hr>
+<div class="row">
+    <style>
+        /* สร้างแถบบาร์แบ่งสี */
+        .bar-linear {
+            position: relative;
+            width: 100%; /* กำหนดความสูงของแถบ */
+            height: 40px; /* กำหนดความสูงของแถบ */
+            background: linear-gradient(to right, #ff6a00 50%, #E476B5 50%);
+            background-color: #e3e3e3;
+            overflow: hidden;
+        }
+
+        /* สร้างคำของความสัดส่วน 70% และ 30% */
+        .percentage-left,
+        .percentage-right {
+            position: absolute;
+            top: 0;
+            color: white; /* สีตัวอักษร */
+            line-height: 40px; /* ขยายสูงให้ตรงกับความสูงของแถบ */
+            font-size: 30px;
+        }
+
+        .percentage-left {
+            left: 5px; /* ตำแหน่งต่อส่วนซ้าย */
+        }
+
+        .percentage-right {
+            right: 5px; /* ตำแหน่งต่อส่วนขวา */
+        }
+
+        .bar-linear:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: linear-gradient(110deg, rgba(227, 227, 227, 0) 0%, rgba(227, 227, 227, 0) 20%, rgba(227, 227, 227, 0.5) 30%, rgba(227, 227, 227, 0) 40%, rgba(227, 227, 227, 0) 80%);
+          animation: gradient-animation_2 8s linear infinite;
+        }
+
+        @keyframes gradient-animation_2 {
+          0% {
+            transform: translateX(-100%);
+          }
+
+          100% {
+            transform: translateX(1000%);
+          }
+        }
+
+    </style>
+
+
+    <div class="col-12 mt-3">
+        <div class="bar-linear main-shadow main-radius">
+            <span class="percentage-left">50%</span>
+            <span class="percentage-right">50%</span>
+        </div>
+    </div>
+
+</div>
+
+<hr class="my-4" style="border: skyblue solid 2px;color: skyblue;">
+
+<div class="col-12 text-center">
+    <h2>ผลการนับคะแนนแต่ละอำเภอ</h2>
+</div>
 
 @if(!empty($data_score))
 <div id="carousel_sum_score_amphoe" class="carousel slide" data-bs-ride="carousel">
@@ -134,14 +198,47 @@
         <div class="carousel-item {{ $active }}" data-bs-interval="10000">
             <div class="card radius-10">
                 <div class="card-header">
-                    <h3>{{ $item->name_amphoe }}</h3>
+                    <h4>{{ $item->name_amphoe }}</h4>
                 </div>
                 <div class="row">
                     <div class="col-9 card-body">
                         <div id="{{ $item->name_amphoe }}"></div>
                     </div>
                     <div class="col-3">
-                        <div class="radius-10 mt-4 bg-gradient-Ohhappiness">
+
+                        <div class="card radius-10 divScore-num-1 mt-4">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-white">เบอร์ 1</p>
+                                        <h4 class="my-1 text-white">
+                                            คิดเป็น <b>50 %</b>
+                                        </h4>
+                                    </div>
+                                    <div class="ms-auto text-white">
+                                        <span class="rank_score divScore text-white mb-3 font-35">1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card radius-10 divScore-num-2">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-white">เบอร์ 2</p>
+                                        <h4 class="my-1 text-white">
+                                            คิดเป็น <b>50 %</b>
+                                        </h4>
+                                    </div>
+                                    <div class="ms-auto text-white">
+                                        <span class="rank_score divScore text-white mb-3 font-35">2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="radius-10 mt-4 bg-gradient-Ohhappiness d-none">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
@@ -407,7 +504,7 @@
                 data: [ score_num_1 , score_num_2 ]
             }],
                 chart: {
-                height: 150,
+                height: 250,
                 type: 'bar',
                 events: {
                 click: function(chart, w, e) {
@@ -431,13 +528,19 @@
             },
             xaxis: {
                 categories: [
-                    ['เบอร์ 1', score_num_1 +' คะแนน'],
-                    ['เบอร์ 2', score_num_2 +' คะแนน'],
+                    ['เบอร์ 1', score_num_1 +' คะแนน',],
+                    ['เบอร์ 2', score_num_2 +' คะแนน',],
                 ],
                 labels: {
                     style: {
-
-                        fontSize: '12px'
+                        fontSize: '14px'
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        fontSize: '18px'
                     }
                 }
             }
