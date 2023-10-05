@@ -158,6 +158,11 @@
                                 <i class="bx bx-right-arrow-alt"></i>การกรอกคะแนน
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ url('/vote_kan_all_scores') }}">
+                                <i class="bx bx-right-arrow-alt"></i>คะแนนแต่ละอำเภอ
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

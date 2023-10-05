@@ -1,15 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.viicheck_for_vote_kan')
 
 @section('content')
-    <div class="container">
+    <div class="container">  
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Edit Vote_kan_all_score #{{ $vote_kan_all_score->id }}</div>
+                    <h3 class="card-header">
+                        แก้ไขข้อมูลคะแนน {{ $vote_kan_all_score->name_amphoe }}
+                    </h3>
                     <div class="card-body">
-                        <a href="{{ url('/vote_kan_all_scores') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/vote_kan_all_scores') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> ย้อนกลับ</button></a>
                         <br />
                         <br />
 
