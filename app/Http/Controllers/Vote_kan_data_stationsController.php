@@ -161,11 +161,13 @@ class Vote_kan_data_stationsController extends Controller
 
             $data_user = Auth::user();
 
-            DB::table('users')
-                ->where([ 
-                        ['provider_id', $data_user->provider_id],
-                    ])
-                ->update(['role' => 'officer']);
+            if(empty($data_user->role)){
+                DB::table('users')
+                    ->where([ 
+                            ['provider_id', $data_user->provider_id],
+                        ])
+                    ->update(['role' => 'officer']);
+            }
 
             return redirect($re_to);
         }else{
