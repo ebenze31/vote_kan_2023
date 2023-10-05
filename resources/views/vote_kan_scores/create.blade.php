@@ -35,7 +35,6 @@
                 <h5 class="card-title text-center">หน่วยเลือกตั้งของคุณ</h5>
                 <p class="d-block m-0 font-18">
                     อ.{{$data_station->amphoe}}
-                    เขต{{$data_station->area}}
                 </p>
                 <p class="d-block m-0 font-18">
                     ต.{{$data_station->tambon}}
@@ -88,13 +87,15 @@
             <h5 class="card-title text-center">หน่วยเลือกตั้ง</h5>
             <p class="d-block m-0 font-18">
                 อ.{{$data_station->amphoe}}
-                เขต{{$data_station->area}}
             </p>
             <p class="d-block m-0 font-18">
                 ต.{{$data_station->tambon}}
             </p>
             <p class="d-block m-0 font-18">
                 หน่วยเลือกตั้งที่ {{$data_station->polling_station_at}}
+            </p>
+            <p class="d-block m-0 font-18">
+                จำนวนผู้มีสิทธิเลือกตั้ง : {{ $data_station->quantity_person }}
             </p>
         </div>
         <hr>
@@ -105,6 +106,7 @@
             [
             'formMode' => 'create',
             'name_vote_score' => $data_station->name ,
+            'quantity_person' => $data_station->quantity_person ,
             ]
         )
         </form>
