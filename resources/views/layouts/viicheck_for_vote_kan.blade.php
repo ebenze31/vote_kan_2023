@@ -84,7 +84,7 @@
             <h3 class="mt-3 mb-3 text-danger">
                 ยืนยัน
                 <br>
-                การรีเซ็ต หน่วย / คะแนน หรือไม่
+                การรีเซ็ต <span id="text_reset_type"></span> หรือไม่
             </h3>
             <div class="d-none" id="spinner_of_reset_stations">
                 <a href="javascript:;" class="" aria-expanded="false">
@@ -97,7 +97,7 @@
           </div>
           <div class="modal-footer">
             <span type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</span>
-            <span type="button" class="btn btn-info" onclick="reset_stations();">ยืนยัน</span>
+            <span id="span_cf_reset_type" type="button" class="btn btn-info">ยืนยัน</span>
           </div>
         </div>
       </div>
@@ -168,24 +168,62 @@
 
                 @if( Auth::user()->role == "admin" )
                     <li>
-                        <a href="javascript:;" class="" aria-expanded="false" data-toggle="modal" data-target="#modal_reset" >
+                        <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon">
                                 <i class="fa-solid fa-repeat text-danger"></i>
                             </div>
                             <div class="menu-title">รีเซ็ต หน่วย / คะแนน</div>
                         </a>
+                        <ul class="mm-collapse">
+                            <li> 
+                                <a href="#" onclick="check_type_reset('score');">
+                                    <div class="parent-icon">
+                                        <i class="fa-duotone fa-star-exclamation" style="--fa-primary-color: #ffffff; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 0.6;"></i>
+                                    </div>
+                                    <div class="menu-title">Reset คะแนน</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="check_type_reset('stations');">
+                                    <div class="parent-icon">
+                                        <i class="fa-duotone fa-building-circle-exclamation" style="--fa-secondary-color: #ff0000; --fa-secondary-opacity: 0.6;"></i>
+                                    </div>
+                                    <div class="menu-title">Reset หน่วย</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endif
                 
             </ul>
+
+            <span id="span_open_modal" class="d-none" aria-expanded="false" data-toggle="modal" data-target="#modal_reset" >
+                OPEN MODAL
+            </span>
             @endif
             <!--end navigation-->
             <script>
-                function reset_stations(){
+
+                function check_type_reset(type){
+                    // console.log(type);
+
+                    let text_type ;
+                    if(type == "score"){
+                        text_type = "ผลคะแนน" ;
+                    }else{
+                        text_type = "การลงทะเบียนหน่วย" ;
+                    }
+
+                    document.querySelector('#text_reset_type').innerHTML = text_type ;
+                    document.querySelector('#span_cf_reset_type').setAttribute('onclick','reset_stations("'+type+'");');
+                    document.querySelector('#span_open_modal').click();
+                }
+
+                function reset_stations(type){
 
                     document.querySelector('#spinner_of_reset_stations').classList.remove('d-none');
 
-                    fetch("{{ url('/') }}/reset_vote_kan_data_stations/")
+                    fetch("{{ url('/') }}/reset_vote_kan_data_stations" + "/" + type)
                         .then(response => response.text())
                         .then(result => {
                             // console.log(result);

@@ -152,7 +152,7 @@
             fetch("{{ url('/') }}/api/change_status/"+name_amphoe+"/" + status)
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
                     
                 });
 

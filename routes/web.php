@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('vote_kan_stations_not_registered', 'Vote_kan_data_stationsController@not_registered'); // index
 
     // reset stations
-    Route::get('/reset_vote_kan_data_stations', 'HomeController@reset_vote_kan_data_stations');
+    Route::get('/reset_vote_kan_data_stations/{type}', 'HomeController@reset_vote_kan_data_stations');
 
 });
 Route::resource('person_of_polling_station', 'Person_of_polling_stationController');

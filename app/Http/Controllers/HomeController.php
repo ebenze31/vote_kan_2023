@@ -31,48 +31,52 @@ class HomeController extends Controller
         return redirect('show_score_public');
     }
 
-    public function reset_vote_kan_data_stations(){
+    public function reset_vote_kan_data_stations($type){
         $data = Vote_kan_data_station::where('id' , "!=" , null)->get();
 
         foreach ($data as $item) {
-            $xb = "";
-            for ($i=1; $i <= intval($item->polling_station_at); $i++) { 
-                if(empty($xb)){
-                    $xb = $i ;
-                }else{
-                    $xb = $xb . "," . $i ;
+
+            if($type == "score"){
+
+                for ($ix=1; $ix <= 13 ; $ix++) { 
+                    DB::table('vote_kan_all_scores')
+                        ->where([ 
+                                ['id', $ix],
+                            ])
+                        ->update([
+                            'number_1' => null,
+                            'number_2' => null,
+                        ]);
                 }
+
+            }else{
+                $xb = "";
+                for ($i=1; $i <= intval($item->polling_station_at); $i++) { 
+                    if(empty($xb)){
+                        $xb = $i ;
+                    }else{
+                        $xb = $xb . "," . $i ;
+                    }
+                }
+
+                DB::table('vote_kan_data_stations')
+                    ->where([ 
+                            ['id', $item->id],
+                        ])
+                    ->update([
+                        'not_registered' => $xb,
+                        'registered' => null,
+                    ]);
+
             }
 
-            DB::table('vote_kan_data_stations')
-                ->where([ 
-                        ['id', $item->id],
-                    ])
-                ->update([
-                    'not_registered' => $xb,
-                    'registered' => null,
-                ]);
-
-            // echo "polling_station_at >> " . $item->polling_station_at;
-            // echo "<br>";
-            // echo "text not_registered >> " . $xb;
-            // echo "<br>";
         }
 
-        for ($ix=1; $ix <= 13 ; $ix++) { 
-            DB::table('vote_kan_all_scores')
-                ->where([ 
-                        ['id', $ix],
-                    ])
-                ->update([
-                    'number_1' => null,
-                    'number_2' => null,
-                ]);
+        if($type == "score"){
+            Vote_kan_score::truncate();
+        }else{
+            Vote_kan_station::truncate();
         }
-
-
-        Vote_kan_station::truncate();
-        Vote_kan_score::truncate();
 
         return "ดำเนินการเรียบร้อย" ;
     }
