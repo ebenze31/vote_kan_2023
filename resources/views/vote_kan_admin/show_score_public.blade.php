@@ -87,7 +87,6 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
-                        <h6 class="mb-0 text-white font-weight-bold mb-2">หมายเลข</h6>
                         <div class="d-flex justify-content-center">
                             <span class="rank_score divScore text-white mb-3 font-35">1</span>
                         </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->

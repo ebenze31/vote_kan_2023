@@ -165,10 +165,18 @@ class Vote_kan_stationsController extends Controller
         
         $requestData = $request->all();
         
+        $data_person = Person_of_polling_station::where('amphoe' , $requestData['amphoe'])
+            ->where('tambon' , $requestData['tambon'])
+            ->where('polling_station_at' , $requestData['polling_station_at'])
+            ->select('quantity_person')
+            ->first();
+
+        $requestData['quantity_person'] = $data_person->quantity_person ;
+
         $vote_kan_station = Vote_kan_station::findOrFail($id);
         $vote_kan_station->update($requestData);
 
-        // ------------- แก้ไขเอาหน่วยที่ลงผผิดไปกลับมา
+        // ------------- แก้ไขเอาหน่วยที่ลงผิดไปกลับมา
         $data_for_edit = Vote_kan_data_station::where('amphoe' , $requestData['old_amphoe'])
             ->where('tambon' , $requestData['old_tambon'])
             ->first();

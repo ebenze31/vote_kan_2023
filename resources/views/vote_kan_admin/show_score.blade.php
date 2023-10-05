@@ -16,13 +16,13 @@
     }
 
     .rank_score {
-        width: 60px;
+        width: 180px;
         height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
         background-color: #ededed;
-        border-radius: 50px;
+        border-radius: 20px;
         border-style: double;
         /* margin-left: 45%; */
     }
@@ -77,9 +77,10 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
-                        <h6 class="mb-0 text-white font-weight-bold mb-2">หมายเลข</h6>
                         <div class="d-flex justify-content-center">
-                            <span class="rank_score divScore text-white mb-3 font-35">1</span>
+                            <span class="rank_score divScore text-white mb-3 font-35">
+                                <span style="font-size:25px!important;">หมายเลข</span>&nbsp;1
+                            </span>
                         </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายสุกวี แสงเป่า</h3>
                         <h3 class="mb-0 mt-3 text-white font-weight-bold">
@@ -101,7 +102,9 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
                         <div class="d-flex justify-content-center">
-                            <span class="rank_score divScore text-white mb-3 font-35">2</span>
+                            <span class="rank_score divScore text-white mb-3 font-35">
+                                <span style="font-size:25px!important;">หมายเลข</span>&nbsp;2
+                            </span>
                         </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
                         <h3 class="mb-0 mt-3 text-white font-weight-bold">
@@ -121,9 +124,12 @@
             position: relative;
             width: 100%; /* กำหนดความสูงของแถบ */
             height: 40px; /* กำหนดความสูงของแถบ */
-            background: linear-gradient(to right, #ff6a00 50%, #E476B5 50%);
             background-color: #e3e3e3;
             overflow: hidden;
+        }
+
+        .bar-linear-percentage{
+            background: linear-gradient(to right, #ff6a00 50%, #E476B5 50%);
         }
 
         /* สร้างคำของความสัดส่วน 70% และ 30% */
@@ -169,9 +175,9 @@
 
 
     <div class="col-12 mt-3">
-        <div class="bar-linear main-shadow main-radius">
-            <span class="percentage-left">50%</span>
-            <span class="percentage-right">50%</span>
+        <div class="bar-linear bar-linear-percentage main-shadow main-radius">
+            <span id="text_linear_percentage_1" class="percentage-left">50%</span>
+            <span id="text_linear_percentage_2" class="percentage-right">50%</span>
         </div>
     </div>
 
@@ -213,11 +219,11 @@
                                     <div>
                                         <p class="mb-0 text-white">เบอร์ 1</p>
                                         <h4 class="my-1 text-white">
-                                            คิดเป็น <b>50 %</b>
+                                            คิดเป็น <b id="text_show_percen_1_{{ $item->name_amphoe }}"> </b>%
                                         </h4>
                                     </div>
                                     <div class="ms-auto text-white">
-                                        <span class="rank_score divScore text-white mb-3 font-35">1</span>
+                                        <img src="{{ url('/img/STK/percent.png') }}" width="50">
                                     </div>
                                 </div>
                             </div>
@@ -229,11 +235,11 @@
                                     <div>
                                         <p class="mb-0 text-white">เบอร์ 2</p>
                                         <h4 class="my-1 text-white">
-                                            คิดเป็น <b>50 %</b>
+                                            คิดเป็น <b id="text_show_percen_2_{{ $item->name_amphoe }}"> </b>%
                                         </h4>
                                     </div>
                                     <div class="ms-auto text-white">
-                                        <span class="rank_score divScore text-white mb-3 font-35">2</span>
+                                        <img src="{{ url('/img/STK/percent.png') }}" width="50">
                                     </div>
                                 </div>
                             </div>
@@ -298,13 +304,18 @@
     let score_num_1 = 0;
     let score_num_2 = 0;
     let amount_person = [] ;
-    let percentage ;
+    let percentage_a_1 ;
+    let percentage_a_2 ;
     let score_number_1 ;
     let score_number_2 ;
 
+    let amphoe_score_1_2 ;
+
     @foreach($data_score as $data_item)
         
-        percentage = 0;
+        percentage_a_1 = 0;
+        percentage_a_2 = 0;
+        amphoe_score_1_2 = 0;
 
         @if(!empty($data_item->number_1))
             score_num_1 = score_num_1 + parseInt("{{ $data_item->number_1 }}");
@@ -313,22 +324,40 @@
             score_num_2 = score_num_2 + parseInt("{{ $data_item->number_2 }}");
         @endif
 
-        amount_person['amphoe_{{ $data_item->id }}'] = parseInt("{{ $data_item->Amount_person }}") ;
-
         score_number_1 = parseInt("{{ $data_item->number_1 }}");
         score_number_2 = parseInt("{{ $data_item->number_2 }}");
 
-        if(amount_person['amphoe_{{ $data_item->id }}'] && score_number_1 && score_number_2){
-            percentage = ( (score_number_1 + score_number_2) / amount_person['amphoe_{{ $data_item->id }}'] ) * 100 ;
+        amphoe_score_1_2 = score_number_1 + score_number_2 ;
+
+        if(amphoe_score_1_2){
+            percentage_a_1 = ( score_number_1  / amphoe_score_1_2 ) * 100 ;
+            percentage_a_2 = ( score_number_2  / amphoe_score_1_2 ) * 100 ;
         }
 
-        document.querySelector('#percentage_{{ $data_item->name_amphoe }}').innerHTML = percentage.toFixed(2);
-        document.querySelector('#line_percentage_{{ $data_item->name_amphoe }}').style = "width:"+percentage+"%";
+        document.querySelector('#text_show_percen_1_{{ $data_item->name_amphoe }}').innerHTML = percentage_a_1.toFixed(0);
+        document.querySelector('#text_show_percen_2_{{ $data_item->name_amphoe }}').innerHTML = percentage_a_2.toFixed(0);
 
     @endforeach
 
     document.querySelector('#show_text_score_1').innerHTML = score_num_1.toString();
     document.querySelector('#show_text_score_2').innerHTML = score_num_2.toString();
+
+    let all_score_1_2 = score_num_1 + score_num_2 ;
+        // console.log(all_score_1_2);
+
+    if(all_score_1_2){
+
+        let percentage_vs_1 = ( score_num_1  / all_score_1_2 ) * 100 ;
+        let percentage_vs_2 = ( score_num_2  / all_score_1_2 ) * 100 ;
+
+        document.querySelector('#text_linear_percentage_1').innerHTML = percentage_vs_1.toFixed(0) + "%" ;
+        document.querySelector('#text_linear_percentage_2').innerHTML = percentage_vs_2.toFixed(0) + "%" ;
+
+        let for_style = percentage_vs_1.toFixed(0) ;
+        let linear_percentage = document.querySelector('.bar-linear-percentage');
+            linear_percentage.setAttribute('style' , 'background: linear-gradient(to right, #ff6a00 '+for_style+'%, #E476B5 '+for_style+'%)!important;');
+    }
+
 </script>
 
 
@@ -374,6 +403,19 @@
 
                 score_num_1 = result['sum_num_1'] ;
                 score_num_2 = result['sum_num_2'] ;
+
+                // คิดเปอร์เซนต์ทั้งจังหวัด
+                let loop_all_score_1_2 = score_num_1 + score_num_2 ;
+
+                let loop_percentage_vs_1 = ( score_num_1  / loop_all_score_1_2 ) * 100 ;
+                let loop_percentage_vs_2 = ( score_num_2  / loop_all_score_1_2 ) * 100 ;
+
+                document.querySelector('#text_linear_percentage_1').innerHTML = loop_percentage_vs_1.toFixed(0) + "%" ;
+                document.querySelector('#text_linear_percentage_2').innerHTML = loop_percentage_vs_2.toFixed(0) + "%" ;
+
+                let loop_for_style = loop_percentage_vs_1.toFixed(0) ;
+                let loop_linear_percentage = document.querySelector('.bar-linear-percentage');
+                    loop_linear_percentage.setAttribute('style' , 'background: linear-gradient(to right, #ff6a00 '+loop_for_style+'%, #E476B5 '+loop_for_style+'%)!important;');
 
                 update_score_num_1 = {
                     "amphoe_1" : result['score_amphoe_num_1']['amphoe_1'],
@@ -433,17 +475,22 @@
                         update_score_num_2[name_key]
                     );
 
-                    percentage = 0;
+                    percentage_a_1 = 0;
+                    percentage_a_2 = 0;
+                    amphoe_score_1_2 = 0;
 
                     score_number_1 = parseInt(update_score_num_1[name_key]);
                     score_number_2 = parseInt(update_score_num_2[name_key]);
 
-                    if(amount_person["amphoe_" + parseInt(zi + 1)] && score_number_1 && score_number_2){
-                        percentage = ( (score_number_1 + score_number_2) / amount_person["amphoe_" + parseInt(zi + 1)] ) * 100 ;
+                    amphoe_score_1_2 = score_number_1 + score_number_2 ;
+
+                    if(amphoe_score_1_2){
+                        percentage_a_1 = ( score_number_1  / amphoe_score_1_2 ) * 100 ;
+                        percentage_a_2 = ( score_number_2  / amphoe_score_1_2 ) * 100 ;
                     }
 
-                    document.querySelector('#percentage_'+name_amphoe["amphoe_" + parseInt(zi + 1)]).innerHTML = percentage.toFixed(2);
-                    document.querySelector('#line_percentage_'+name_amphoe["amphoe_" + parseInt(zi + 1)]).style = "width:"+percentage+"%";
+                    document.querySelector('#text_show_percen_1_'+name_amphoe["amphoe_" + parseInt(zi + 1)]).innerHTML = percentage_a_1.toFixed(0);
+                    document.querySelector('#text_show_percen_2_'+name_amphoe["amphoe_" + parseInt(zi + 1)]).innerHTML = percentage_a_2.toFixed(0);
 
                 }
 
