@@ -145,11 +145,13 @@ class LoginController extends Controller
         if ($check_officer == 'officer') {
             $data_user = Auth::user();
 
-            DB::table('users')
-                ->where([ 
-                        ['provider_id', $data_user->provider_id],
-                    ])
-                ->update(['role' => 'officer']);
+            if(empty($data_user->role)){
+                DB::table('users')
+                    ->where([ 
+                            ['provider_id', $data_user->provider_id],
+                        ])
+                    ->update(['role' => 'officer']);
+            }
         }
 
     }
