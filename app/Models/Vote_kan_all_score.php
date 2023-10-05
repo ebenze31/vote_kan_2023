@@ -25,7 +25,7 @@ class Vote_kan_all_score extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_amphoe', 'number_1', 'number_2', 'Amount_person'];
+    protected $fillable = ['name_amphoe', 'number_1', 'number_2', 'Amount_person','status'];
 
     
 }

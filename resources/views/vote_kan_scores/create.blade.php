@@ -19,7 +19,13 @@
     $data_station = App\Models\Vote_kan_station::where('user_id' , Auth::user()->id)->first();
     $data_score = App\Models\Vote_kan_score::where('user_id' , Auth::user()->id)->orderBy('id', 'desc')->get();
     $count_data_score = count($data_score);
+
+    $name_amphoe_user = $data_station->amphoe;
+
+    $data_status_amphoe = App\Models\Vote_kan_all_score::where('name_amphoe' , $name_amphoe_user)->select('status')->first();
 @endphp
+
+@if( $data_status_amphoe->status == "Active" )
 
 @if(!empty($data_station->amphoe))
 <!-- Modal -->
@@ -161,6 +167,19 @@
     <a href="{{ url('/vote_kan_stations/create') }}" class="btn btn-success px-5 m-3">
         ลงทะเบียนหน่วยเลือกตั้ง
     </a>
+</div>
+@endif
+
+@else
+<div class="card border-top border-0 border-4 border-danger m-2 text-center">
+    <center>
+        <img src="{{ url('/img/STK/warning.png') }}" class="m-2" width="60%" >
+    </center>
+    <h3 class="mt-3 mb-3 text-danger">
+        ขออภับ
+        <br>
+        พื้นที่ของท่านปิดรับผลคะแนนแล้ว
+    </h3>
 </div>
 @endif
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

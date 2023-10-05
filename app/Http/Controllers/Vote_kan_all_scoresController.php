@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Vote_kan_all_score;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Vote_kan_all_scoresController extends Controller
 {
@@ -119,5 +120,19 @@ class Vote_kan_all_scoresController extends Controller
         Vote_kan_all_score::destroy($id);
 
         return redirect('vote_kan_all_scores')->with('flash_message', 'Vote_kan_all_score deleted!');
+    }
+
+    function change_status($name_amphoe , $status){
+
+        DB::table('vote_kan_all_scores')
+            ->where([ 
+                    ['name_amphoe', $name_amphoe],
+                ])
+            ->update([
+                    'status' => $status,
+                ]);
+
+        return "OK" ;
+
     }
 }
