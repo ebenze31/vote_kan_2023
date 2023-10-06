@@ -208,10 +208,10 @@
                     <h4>{{ $item->name_amphoe }}</h4>
                 </div>
                 <div class="row">
-                    <div class="col-9 card-body">
+                    <div class="col-12 col-md-9 col-lg-9 card-body">
                         <div id="{{ $item->name_amphoe }}"></div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-3 col-lg-3">
 
                         <div class="card radius-10 divScore-num-1 mt-4">
                             <div class="card-body">
@@ -271,6 +271,18 @@
         </div>
         @endforeach
 
+        <div class="carousel-item" data-bs-interval="10000">
+            <div class="card-header">
+                <h4>การช่วยเหลือที่รวดเร็วกว่าเดิม</h4>
+            </div>
+            <div class="row">
+                <div class="col-9 card-body">
+                    <img src="{{ asset('/img/vote_kan/Limited Edition (1).png') }}" class="banner_pc" style="width:100%;" alt="">
+                </div>
+            </div>
+            
+        </div>
+
     </div>
     <div class="d-flex justify-content-between">
         <a class="" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="prev">
@@ -281,7 +293,7 @@
         <ol class="carousel-indicators mt-5">
             <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="0" class="active">
             </li>
-            @for($i = 1; $i < 13 ; $i++)
+            @for($i = 1; $i < 14 ; $i++)
             <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="{{ $i }}" class="">
             </li>
             @endfor
