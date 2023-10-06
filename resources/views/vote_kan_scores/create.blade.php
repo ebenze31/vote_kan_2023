@@ -116,7 +116,7 @@
                 หน่วยเลือกตั้งที่ {{$data_station->polling_station_at}}
             </p>
             <p class="d-block m-0 font-18">
-                จำนวนผู้มีสิทธิเลือกตั้ง : {{ $data_station->quantity_person }}
+                จำนวนผู้มีสิทธิเลือกตั้ง : {{ number_format($data_station->quantity_person) }}
             </p>
         </div>
         <hr>
@@ -149,11 +149,11 @@
                 </div>
                 <div class="d-flex justify-content-between w-100">
                     <h6 class="mb-0">เบอร์ที่ 1</h6>
-                    <span class="text-secondary">{{$item->number_1}} คะแนน</span>
+                    <span class="text-secondary">{{number_format($item->number_1)}} คะแนน</span>
                 </div>
                 <div class="d-flex mt-2 justify-content-between w-100">
                     <h6 class="mb-0">เบอร์ที่ 2</h6>
-                    <span class="text-secondary">{{$item->number_2}} คะแนน</span>
+                    <span class="text-secondary">{{number_format($item->number_2)}} คะแนน</span>
                 </div>
                 <!-- <div class="d-flex mt-2 justify-content-between w-100">
                         <h6 class="mb-0">เบอร์ที่ 3</h6>

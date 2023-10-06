@@ -351,8 +351,11 @@
 
     @endforeach
 
-    document.querySelector('#show_text_score_1').innerHTML = score_num_1.toString();
-    document.querySelector('#show_text_score_2').innerHTML = score_num_2.toString();
+    let format_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_1) ;
+    let format_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_2) ;
+
+    document.querySelector('#show_text_score_1').innerHTML = format_num_1.toString();
+    document.querySelector('#show_text_score_2').innerHTML = format_num_2.toString();
 
     let all_score_1_2 = score_num_1 + score_num_2 ;
         // console.log(all_score_1_2);
@@ -408,9 +411,12 @@
                 counterAnim("#show_text_score_1", score_num_1, result['sum_num_1'], 1500); // 1.5 วินาที
                 counterAnim("#show_text_score_2", score_num_2, result['sum_num_2'], 1500); // 1.5 วินาที
 
+                let loop_format_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(result['sum_num_1']) ;
+                let loop_format_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(result['sum_num_2']) ;
+
                 setTimeout(() => {
-                    document.querySelector('#show_text_score_1').innerHTML = result['sum_num_1'] ;
-                    document.querySelector('#show_text_score_2').innerHTML = result['sum_num_2'] ;
+                    document.querySelector('#show_text_score_1').innerHTML = loop_format_num_1 ;
+                    document.querySelector('#show_text_score_2').innerHTML = loop_format_num_2 ;
                 }, 1600);
 
                 score_num_1 = result['sum_num_1'] ;
@@ -559,6 +565,9 @@
 
         document.querySelector("#"+amphoe).innerHTML = "" ;
 
+        let format_Create_graph_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_1) ;
+        let format_Create_graph_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_2) ;
+
         options[amphoe] = {
             series: [{
                 data: [ score_num_1 , score_num_2 ]
@@ -588,8 +597,8 @@
             },
             xaxis: {
                 categories: [
-                    ['เบอร์ 1', score_num_1 +' คะแนน',],
-                    ['เบอร์ 2', score_num_2 +' คะแนน',],
+                    ['เบอร์ 1', format_Create_graph_num_1 +' คะแนน',],
+                    ['เบอร์ 2', format_Create_graph_num_2 +' คะแนน',],
                 ],
                 labels: {
                     style: {

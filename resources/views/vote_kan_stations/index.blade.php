@@ -46,7 +46,7 @@
                             </td>
                             <td>
                                 @if(!empty($item->quantity_person))
-                                    {{ $item->quantity_person}}
+                                    {{ number_format($item->quantity_person) }}
                                 @else
                                     <span class="text-danger">ไม่มีข้อมูล</span>
                                 @endif
@@ -80,6 +80,10 @@
 <script>
     $(document).ready(function () {
         counterAnim("#count_registred", 0, <?php echo $count_vote_kan_stations; ?>, 1500);
+
+        setTimeout(() => {
+            document.querySelector('#count_registred').innerHTML = "{{ number_format($count_vote_kan_stations) }}" ;
+        }, 1100);
         
         $("#table_vote_kan_stations tfoot th").each(function () {
             if($(this).text()){

@@ -218,10 +218,10 @@
                     <h4>{{ $item->name_amphoe }}</h4>
                 </div>
                 <div class="row">
-                    <div class="col-9 card-body">
+                    <div class="col-12 col-md-9 col-lg-9 card-body">
                         <div id="{{ $item->name_amphoe }}"></div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-3 col-lg-3">
 
                         <div class="card radius-10 divScore-num-1 mt-4">
                             <div class="card-body">
@@ -281,6 +281,18 @@
         </div>
         @endforeach
 
+        <div class="carousel-item" data-bs-interval="10000">
+            <div class="card-header">
+                <h4>การช่วยเหลือที่รวดเร็วกว่าเดิม</h4>
+            </div>
+            <div class="row">
+                <div class="col-9 card-body">
+                    <img src="{{ asset('/img/vote_kan/Limited Edition (1).png') }}" class="banner_pc" style="width:100%;" alt="">
+                </div>
+            </div>
+            
+        </div>
+
     </div>
     <div class="d-flex justify-content-between">
         <a class="" href="#carousel_sum_score_amphoe" role="button" data-bs-slide="prev">
@@ -291,7 +303,7 @@
         <ol class="carousel-indicators mt-5">
             <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="0" class="active">
             </li>
-            @for($i = 1; $i < 13 ; $i++)
+            @for($i = 1; $i < 14 ; $i++)
             <li class="text-danger" style=" background-color: #2366e1;" data-bs-target="#carousel_sum_score_amphoe" data-bs-slide-to="{{ $i }}" class="">
             </li>
             @endfor
@@ -349,8 +361,11 @@
 
     @endforeach
 
-    document.querySelector('#show_text_score_1').innerHTML = score_num_1.toString();
-    document.querySelector('#show_text_score_2').innerHTML = score_num_2.toString();
+    let format_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_1) ;
+    let format_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_2) ;
+
+    document.querySelector('#show_text_score_1').innerHTML = format_num_1.toString();
+    document.querySelector('#show_text_score_2').innerHTML = format_num_2.toString();
 
     let all_score_1_2 = score_num_1 + score_num_2 ;
         // console.log(all_score_1_2);
@@ -406,9 +421,12 @@
                 counterAnim("#show_text_score_1", score_num_1, result['sum_num_1'], 1500); // 1.5 วินาที
                 counterAnim("#show_text_score_2", score_num_2, result['sum_num_2'], 1500); // 1.5 วินาที
 
+                let loop_format_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(result['sum_num_1']) ;
+                let loop_format_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(result['sum_num_2']) ;
+
                 setTimeout(() => {
-                    document.querySelector('#show_text_score_1').innerHTML = result['sum_num_1'] ;
-                    document.querySelector('#show_text_score_2').innerHTML = result['sum_num_2'] ;
+                    document.querySelector('#show_text_score_1').innerHTML = loop_format_num_1 ;
+                    document.querySelector('#show_text_score_2').innerHTML = loop_format_num_2 ;
                 }, 1600);
 
                 score_num_1 = result['sum_num_1'] ;
@@ -557,6 +575,9 @@
 
         document.querySelector("#"+amphoe).innerHTML = "" ;
 
+        let format_Create_graph_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_1) ;
+        let format_Create_graph_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_2) ;
+
         options[amphoe] = {
             series: [{
                 data: [ score_num_1 , score_num_2 ]
@@ -586,8 +607,8 @@
             },
             xaxis: {
                 categories: [
-                    ['เบอร์ 1', score_num_1 +' คะแนน',],
-                    ['เบอร์ 2', score_num_2 +' คะแนน',],
+                    ['เบอร์ 1', format_Create_graph_num_1 +' คะแนน',],
+                    ['เบอร์ 2', format_Create_graph_num_2 +' คะแนน',],
                 ],
                 labels: {
                     style: {

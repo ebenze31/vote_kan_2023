@@ -87,9 +87,9 @@
                                     <tr>
                                         <!-- <td>{{ $loop->iteration }}</td> -->
                                         <td><h4>{{ $item->name_amphoe }}</h4></td>
-                                        <td class="text-center">{{ $item->Amount_person }}</td>
-                                        <td class="text-center">{{ $item->number_1 }}</td>
-                                        <td class="text-center">{{ $item->number_2 }}</td>
+                                        <td class="text-center">{{ number_format($item->Amount_person) }}</td>
+                                        <td class="text-center">{{ number_format($item->number_1) }}</td>
+                                        <td class="text-center">{{ number_format($item->number_2) }}</td>
                                         <td class="text-center">
 
                                             @php

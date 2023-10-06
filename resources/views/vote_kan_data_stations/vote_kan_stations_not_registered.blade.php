@@ -63,6 +63,10 @@ $totalCount = 0;
     $(document).ready(function() {
         counterAnim("#count_not_registred", 0, <?php echo $totalCount; ?>, 1000); // 1.5 วินาที
 
+        setTimeout(() => {
+            document.querySelector('#count_not_registred').innerHTML = "{{ number_format($totalCount) }}" ;
+        }, 1100);
+
         $("#table_vote_kan_stations tfoot th").each(function() {
             if ($(this).text()) {
                 let title1 = $(this).text();

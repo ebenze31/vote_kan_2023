@@ -1,9 +1,13 @@
 @extends('layouts.viicheck_for_vote_kan')
 
 @section('content')
-
+    
+    @php
+        $count_vote_kan_scores = count($vote_kan_scores);
+    @endphp
+    
     <h1 class="text-center">
-        จำนวนการกรอกคะแนนทั้งหมด {{ count($vote_kan_scores) }} ครั้ง
+        จำนวนการกรอกคะแนนทั้งหมด {{ number_format($count_vote_kan_scores) }} ครั้ง
     </h1>
 
     <div class="table-responsive">
@@ -25,8 +29,8 @@
                     <td>
                         {{ $item->vote_kan_station->amphoe }} ตำบล{{ $item->vote_kan_station->tambon }} หน่วยเลือกตั้งที่ {{ $item->vote_kan_station->polling_station_at }}
                     </td>
-                    <td>{{ $item->number_1}}</td>
-                    <td>{{ $item->number_2 }}</td>
+                    <td>{{ number_format($item->number_1) }}</td>
+                    <td>{{ number_format($item->number_2) }}</td>
                     <td>{{ $item->vote_kan_station->name }}</td>
                 </tr>
                 @endforeach

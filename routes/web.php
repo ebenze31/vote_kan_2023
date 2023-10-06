@@ -35,15 +35,22 @@ Route::get('/vote_kan_login/login/line/{go_to}', 'Auth\LoginController@redirectT
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/vote_kan_index', 'HomeController@vote_kan_index');
-    Route::resource('vote_kan_all_scores', 'Vote_kan_all_scoresController');
     Route::resource('vote_kan_stations', 'Vote_kan_stationsController');
-    Route::resource('vote_kan_scores', 'Vote_kan_scoresController');
+    Route::resource('vote_kan_scores', 'Vote_kan_scoresController')->except(['show','edit']);
     Route::get('vote_kan_admin/show_score', 'Vote_kan_scoresController@show_score');
-    Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
     Route::get('vote_kan_stations_not_registered', 'Vote_kan_data_stationsController@not_registered'); // index
+
+});
+
+
+// ADMIN
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    Route::resource('vote_kan_all_scores', 'Vote_kan_all_scoresController');
+    Route::resource('person_of_polling_station', 'Person_of_polling_stationController');
+    Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
 
     // reset stations
     Route::get('/reset_vote_kan_data_stations/{type}', 'HomeController@reset_vote_kan_data_stations');
 
 });
-Route::resource('person_of_polling_station', 'Person_of_polling_stationController');
