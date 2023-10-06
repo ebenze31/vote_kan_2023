@@ -287,7 +287,10 @@
             </div>
             <div class="row">
                 <div class="col-9 card-body">
-                    <img src="{{ asset('/img/vote_kan/Limited Edition (1).png') }}" class="banner_pc" style="width:100%;" alt="">
+
+                    <img src="{{ asset('/img/vote_kan/viisos_pc.png') }}" class="banner_pc" style="width:100%;" alt="">
+                    <img src="{{ asset('/img/vote_kan/viisos_mobile.png') }}" class="d-block d-md-none" style="width:100%;" alt="">
+
                 </div>
             </div>
             
