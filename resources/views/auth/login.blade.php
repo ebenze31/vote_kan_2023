@@ -696,7 +696,7 @@
                         <div class="overlay-panel overlay-right">
                             <img src="{{ asset('/img/vote_kan/อบจ_กาญxวีเช็ค.png') }}" class="mb-2" width="250" alt="">
                             <h1 class="headerLogin">ระบบรายงาน<br>ผลคะแนน</h1>
-                            <p class="detailLogin">(อย่างไม่เป็นทางกการ)</p>
+                            <p class="detailLogin">(อย่างไม่เป็นทางการ)</p>
                         </div>
                     </div>
                 </div>
@@ -726,7 +726,7 @@
                                     <div class="overlay-panel overlay-right">
                                         <img src="{{ asset('/img/vote_kan/อบจ_กาญxวีเช็ค.png') }}" class="mb-2" width="150" alt="">
                                         <h1 class="headerLogin">ระบบรายงานผลคะแนน</h1>
-                                        <p class="detailLogin">(อย่างไม่เป็นทางกการ)</p>
+                                        <p class="detailLogin">(อย่างไม่เป็นทางการ)</p>
                                     </div>
                                     <h3 class="font-weight-bolder text-vote-kan"> <b>เข้าสู่ระบบ</b></h3>
 
