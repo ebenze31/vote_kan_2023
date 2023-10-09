@@ -52,11 +52,17 @@ class HomeController extends Controller
             }else{
                 $xb = "";
                 for ($i=1; $i <= intval($item->polling_station_at); $i++) { 
-                    if(empty($xb)){
-                        $xb = $i ;
+
+                    if($item->tambon == 'ท่าล้อ (เทศบาลเมืองกาญจนบุรี)'){
+                        $xb = '34,35' ;
                     }else{
-                        $xb = $xb . "," . $i ;
+                        if(empty($xb)){
+                            $xb = $i ;
+                        }else{
+                            $xb = $xb . "," . $i ;
+                        }
                     }
+                    
                 }
 
                 DB::table('vote_kan_data_stations')
