@@ -58,7 +58,11 @@
                         <div class="input-group">
                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-map"></i></span>
                             <select name="amphoe" id="amphoe" class="form-control" required onchange="show_tambon();">
-                                <option value="" selected > - กรุณาเลือกอำเภอ  - </option>
+                                @if(!empty($vote_kan_station->amphoe))
+                                    <option value="{{ $vote_kan_station->amphoe }}" selected >{{ $vote_kan_station->amphoe }}</option>
+                                @else
+                                    <option value="" selected > - กรุณาเลือกอำเภอ  - </option>
+                                @endif
                                 @foreach($data as $item)
                                     <option value="{{ $item->amphoe }}" >{{ $item->amphoe }}</option>
                                 @endforeach
@@ -71,7 +75,11 @@
                         <div class="input-group">
                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-map"></i></span>
                             <select name="tambon" id="tambon" class="form-control" required onchange="show_polling_station_at();">
-                                <option value="" selected > - กรุณาเลือกตำบล - </option>
+                                @if(!empty($vote_kan_station->tambon))
+                                    <option value="{{ $vote_kan_station->tambon }}" selected >{{ $vote_kan_station->tambon }}</option>
+                                @else
+                                    <option value="" selected > - กรุณาเลือกตำบล - </option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -81,7 +89,11 @@
                         <div class="input-group">
                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-map"></i></span>
                             <select name="polling_station_at" id="polling_station_at" class="form-control" required>
-                                <option value="" selected > - กรุณาเลือกหน่วยเลือกตั้ง - </option>
+                                @if(!empty($vote_kan_station->polling_station_at))
+                                    <option value="{{ $vote_kan_station->polling_station_at }}" selected >{{ $vote_kan_station->polling_station_at }}</option>
+                                @else
+                                    <option value="" selected > - กรุณาเลือกหน่วยเลือกตั้ง - </option>
+                                @endif
                             </select>
                         </div>
                     </div>

@@ -57,6 +57,11 @@
                                         <i class="fa-solid fa-pen-to-square"></i> Edit
                                     </button>
                                 </a>
+                                <form method="POST" action="{{ url('/vote_kan_stations' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Person_of_polling_station" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa-solid fa-delete-right"></i> Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

@@ -263,6 +263,48 @@ class Vote_kan_stationsController extends Controller
      */
     public function destroy($id)
     {
+
+        $data_old = Vote_kan_station::where('id',$id)->first();
+
+        $amphoe = $data_old->amphoe ;
+        $tambon = $data_old->tambon ;
+        $polling_station_at = $data_old->polling_station_at ;
+
+        $data_for_edit = Vote_kan_data_station::where('amphoe' , $amphoe)
+            ->where('tambon' , $tambon)
+            ->first();
+
+        $edit_not_registered = $data_for_edit->not_registered;
+        $edit_registered = $data_for_edit->registered;
+
+        if(empty($edit_not_registered)){
+            $update_edit_not_registered = $polling_station_at ;
+        }else{
+            $update_edit_not_registered = $edit_not_registered . ',' . $polling_station_at ;
+        }
+
+        $edit_registered_array = explode(",", $edit_registered);
+
+        // ค่าที่คุณต้องการลบ
+        $edit_valueToRemove = $polling_station_at;
+
+        // ใช้ array_filter() เพื่อลบค่าที่เท่ากับ $edit_valueToRemove
+        $edit_filteredArray = array_filter($edit_registered_array, function($edit_value) use ($edit_valueToRemove) {
+            return $edit_value !== $edit_valueToRemove;
+        });
+
+        $update_edit_registered = implode(",", $edit_filteredArray);
+
+        DB::table('vote_kan_data_stations')
+            ->where([ 
+                    ['amphoe', $amphoe],
+                    ['tambon', $tambon],
+                ])
+            ->update([
+                    'not_registered' => $update_edit_not_registered,
+                    'registered' => $update_edit_registered,
+                ]);
+
         Vote_kan_station::destroy($id);
 
         return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station deleted!');
