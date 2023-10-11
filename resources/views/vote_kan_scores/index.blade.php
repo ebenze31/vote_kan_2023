@@ -56,7 +56,11 @@
                     </tr>
                 @else
                     <tr style="background-color: #e68181">
-                        <td colspan="5">ข้อมูลหน่วย (ID : {{ $item->id }}) ที่ลงข้อมูลนี้ถูกลบออกแล้ว</td>
+                        <td></td>
+                        <td>ข้อมูลหน่วย (ID : {{ $item->id }}) ที่ลงข้อมูลนี้ถูกลบออกแล้ว</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 @endif
                 <tr>
