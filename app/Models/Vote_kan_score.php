@@ -30,5 +30,9 @@ class Vote_kan_score extends Model
     public function vote_kan_station(){
         return $this->belongsTo('App\Models\Vote_kan_station', 'vote_kan_stations_id' , 'id'); 
     }
+
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id' , 'id'); 
+    }
     
 }

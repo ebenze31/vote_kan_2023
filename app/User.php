@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function vote_kan_score(){
+        return $this->hasMany('App\Models\Vote_kan_score', 'user_id');
+    }
 }

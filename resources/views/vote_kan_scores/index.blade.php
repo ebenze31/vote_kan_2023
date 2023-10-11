@@ -40,7 +40,7 @@
                             <td>ข้อมูลหน่วย (ID : {{ $item->id }}) ที่ลงข้อมูลนี้ถูกลบออกแล้ว</td>
                             <td></td>
                             <td></td>
-                            <td></td>
+                            <td>{{ $item->user->name }}</td>
                         </tr>
                     @endif
                
