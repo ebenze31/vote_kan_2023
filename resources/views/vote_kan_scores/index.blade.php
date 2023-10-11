@@ -35,14 +35,30 @@
                             <td>{{ $item->vote_kan_station->name }}</td>
                         </tr>
                     @else
-                        <tr>
-                            <td style="background-color: #e68181" colspan="6">ข้อมูลหน่วย (ID : {{ $item->id }}) ที่ลงข้อมูลนี้ถูกลบออกแล้ว</td>
+                        <tr style="background-color: #e68181">
+                            <td colspan="6">ข้อมูลหน่วย (ID : {{ $item->id }}) ที่ลงข้อมูลนี้ถูกลบออกแล้ว</td>
                         </tr>
                     @endif
                
                 @endforeach
             </tbody>
             <tfoot>
+
+                @if(!empty($item->vote_kan_station->amphoe))
+                    <tr>
+                        <td>{{ $item->created_at }}</td>
+                        <td>
+                            {{ $item->vote_kan_station->amphoe }} ตำบล{{ $item->vote_kan_station->tambon }} หน่วยเลือกตั้งที่ {{ $item->vote_kan_station->polling_station_at }}
+                        </td>
+                        <td>{{ number_format($item->number_1) }}</td>
+                        <td>{{ number_format($item->number_2) }}</td>
+                        <td>{{ $item->vote_kan_station->name }}</td>
+                    </tr>
+                @else
+                    <tr style="background-color: #e68181">
+                        <td colspan="5">ข้อมูลหน่วย (ID : {{ $item->id }}) ที่ลงข้อมูลนี้ถูกลบออกแล้ว</td>
+                    </tr>
+                @endif
                 <tr>
                     <th>วันที่ / เวลา</th>
                     <th>หน่วยเลือกตั้ง</th>
