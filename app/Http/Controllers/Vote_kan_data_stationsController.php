@@ -186,7 +186,7 @@ class Vote_kan_data_stationsController extends Controller
                 ->orWhere('polling_station_at', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $vote_kan_data_not_registered = Vote_kan_data_station::where('not_registered', '!=' , null)->latest()->paginate($perPage);
+            $vote_kan_data_not_registered = Vote_kan_data_station::where('not_registered', '!=' , null)->where('not_registered', '!=' , '')->latest()->paginate($perPage);
         }
 
         return view('vote_kan_data_stations.vote_kan_stations_not_registered', compact('vote_kan_data_not_registered'));
