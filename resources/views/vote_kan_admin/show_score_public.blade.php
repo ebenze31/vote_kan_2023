@@ -578,8 +578,11 @@
 
         document.querySelector("#"+amphoe).innerHTML = "" ;
 
-        let format_Create_graph_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_1) ;
-        let format_Create_graph_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_2) ;
+        // let format_Create_graph_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_1) ;
+        // let format_Create_graph_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_2) ;
+
+        let format_Create_graph_num_1 = score_num_1 ;
+        let format_Create_graph_num_2 = score_num_2 ;
 
         options[amphoe] = {
             series: [{
