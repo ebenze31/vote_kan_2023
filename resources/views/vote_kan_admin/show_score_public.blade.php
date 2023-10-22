@@ -363,12 +363,12 @@
         document.querySelector('#text_show_percen_2_{{ $data_item->name_amphoe }}').innerHTML = percentage_a_2.toFixed(0);
 
     @endforeach
+        
+    // let format_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_1) ;
+    // let format_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_2) ;
 
-    let format_num_1 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_1) ;
-    let format_num_2 = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(score_num_2) ;
-
-    document.querySelector('#show_text_score_1').innerHTML = format_num_1.toString();
-    document.querySelector('#show_text_score_2').innerHTML = format_num_2.toString();
+    document.querySelector('#show_text_score_1').innerHTML = score_num_1.toString();
+    document.querySelector('#show_text_score_2').innerHTML = score_num_2.toString();
 
     let all_score_1_2 = score_num_1 + score_num_2 ;
         // console.log(all_score_1_2);
